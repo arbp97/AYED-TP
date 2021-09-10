@@ -1,0 +1,10 @@
+bin/*
+obj/*
+build-Debug/*
+compiler_flags.txt
+tags.txt
+tda-practica2.workspace
+tda-practica2.mk
+tda-practica2.project
+.codelite/*
+.vscode/*

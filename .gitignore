@@ -8,3 +8,5 @@ tda-practica2.mk
 tda-practica2.project
 .codelite/*
 .vscode/*
+Makefile
+AYED-TP.mk

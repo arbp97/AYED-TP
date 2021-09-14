@@ -10,11 +10,7 @@ void createSeleccion(Seleccion &seleccion, int id, Month month, int year, Vino w
 	seleccion.id = id;
 	seleccion.month = month;
 	seleccion.year = year;
-	
-	for(int i=0;i<WINE_QTY;i++)
-	{
-		seleccion.wines[i] = *(wines + i);
-	}
+	setVinos(seleccion, wines);
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

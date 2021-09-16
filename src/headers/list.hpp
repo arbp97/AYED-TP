@@ -36,11 +36,18 @@ void addNode(List &list, Data ptrData);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+/* Elimina un nodo de la lista */
 void deleteNode(List &list, Node* ptrNodo);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-void length(List &list);
+/* Devuelve el tamaño de la lista */
+int length(List &list);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* Chequea si la lista esta vacia */
+bool isEmpty(List &list);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

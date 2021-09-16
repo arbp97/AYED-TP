@@ -1,6 +1,7 @@
 #include "usuario.hpp"
 #include "vino.hpp"
 #include "seleccion.hpp"
+#include "list.hpp"
 
 using namespace std;
 
@@ -39,6 +40,30 @@ int main()
 	cout << getLabel(*(getVinos(*seleccion))) << endl;
 	
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+	
+	cout << "\n\n\n" << endl;
+	
+	List list;
+	
+	Usuario* usuario2 = new Usuario;
+
+    createUsuario(*usuario2, 2, "Ramon", 21, "Micasa");
+	
+	addNode(list, usuario);
+	addNode(list, usuario2);
+	
+	Node* cursor = new Node;
+	Usuario* ptrUsuario = new Usuario;
+    cursor = list.head;
+
+    while (cursor != NULL)
+    {
+        ptrUsuario = (Usuario*) cursor->ptrData;
+		
+		cout << ptrUsuario->sName << endl;
+		
+        cursor = cursor->next;
+    }
 
     return 0;
 }

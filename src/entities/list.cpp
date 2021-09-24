@@ -45,6 +45,7 @@ void addNode(List &list, Data data)
 		}
 	}
 	
+	delete temp;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -74,6 +75,8 @@ int length(List &list)
         length++;
         temp = temp->next;
     }
+	
+	delete temp;
 
     return length;
 }

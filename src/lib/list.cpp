@@ -44,7 +44,7 @@ void addNode(List &list, Data data)
 			 list.tail = temp;
 		}
 	}
-	
+	temp = NULL;
 	delete temp;
 }
 
@@ -76,9 +76,41 @@ int length(List &list)
         temp = temp->next;
     }
 	
+	temp = NULL;
 	delete temp;
-
+	
     return length;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+void deleteNode(List &list, Node* ptrNode)
+{
+	/* Primero se verifica si la lista no esta vacia y el puntero es valido */
+	if((!isEmpty(list) && (ptrNode != NULL)))
+	{
+		
+		if(ptrNode == list.head)
+		{
+			/* Si el nodo a eliminar es el primero de la lista, se asigna como
+			 * primero de la lista al proximo de este. Hecho esto, se limpia
+			 * el puntero al previo nodo de la nueva cabeza (ya que ahora es
+			 * el primero) */
+			
+			list.head = list.head->next;
+			list.head->prev = NULL;
+		}
+		else
+		{
+			/* Si el nodo a eliminar no es el primero, entonces se busca el nodo
+			 * siguiente del ANTERIOR del nodo a eliminar, y se le asigna como
+			 * proximo al nodo SIGUIENTE de dicho nodo a eliminar. */
+			 
+			ptrNode->prev->next = ptrNode->next;
+		}
+		
+		delete ptrNode;
+	}
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

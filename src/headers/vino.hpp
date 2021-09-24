@@ -24,7 +24,7 @@ typedef struct {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 void createVino(
-	Vino& vino,
+	Vino &vino,
     int id,
     string sLabel,
     string sCellar,

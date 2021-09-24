@@ -53,6 +53,7 @@ int main()
 	addNode(list, usuario2);
 	
 	Node* cursor = new Node;
+	Node* aux = new Node;
 	Usuario* ptrUsuario = new Usuario;
     cursor = list.head;
 
@@ -62,6 +63,24 @@ int main()
 		
 		cout << ptrUsuario->sName << endl;
 		
+		aux = cursor;
+        cursor = cursor->next;
+    }
+	
+	cout << "probando deleteNode (enter)" << endl;
+	getchar();
+	
+	cursor = list.head;
+	
+	deleteNode(list, aux);
+	
+	while (cursor != NULL)
+    {
+        ptrUsuario = (Usuario*) cursor->ptrData;
+		
+		cout << ptrUsuario->sName << endl;
+		
+		aux = cursor;
         cursor = cursor->next;
     }
 

@@ -37,7 +37,7 @@ void addNode(List &list, Data ptrData);
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /* Elimina un nodo de la lista */
-void deleteNode(List &list, Node* ptrNodo);
+void deleteNode(List &list, Node* ptrNode);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

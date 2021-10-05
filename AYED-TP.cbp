@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,7 +33,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="src/entities/seleccion.cpp" />
+		<Unit filename="src/entities/usuario.cpp" />
+		<Unit filename="src/entities/vino.cpp" />
+		<Unit filename="src/headers/list.hpp" />
+		<Unit filename="src/headers/seleccion.hpp" />
+		<Unit filename="src/headers/usuario.hpp" />
+		<Unit filename="src/headers/vino.hpp" />
+		<Unit filename="src/lib/list.cpp" />
+		<Unit filename="src/main.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

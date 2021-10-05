@@ -5,34 +5,37 @@
 #include <iostream>
 #include <cstdlib>
 #define EXIT_SUCCESS 0
+
 using namespace std;
 
 
 void llamarMenu(){
+	
     int opc=0;
-while(1==1){
-    cout<<"*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
-    cout<<"1-Ranking general de vinos seleccionados en el ultimo año."<<endl;
-    cout<<"2-Ranking por bodegas elegidas en el ultimo año."<<endl;
-    cout<<"3-Ranking de varietales elegidos por rango etario."<<endl;
-    cout<<"4-Salir."<<endl;
-    cin>>opc;
+	
+	while(1){
+		
+		cout<<"*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
+		cout<<"1-Ranking general de vinos seleccionados en el ultimo aÃ±o."<<endl;
+		cout<<"2-Ranking por bodegas elegidas en el ultimo aÃ±o."<<endl;
+		cout<<"3-Ranking de varietales elegidos por rango etario."<<endl;
+		cout<<"4-Salir."<<endl;
+		cin>>opc;
 
-    switch (opc){
-        case 1:
-            cout<<"Funcion RANKING GENERAL"<<endl;
-            break;
-        case 2:
-            cout<<"Funcion RANKING POR BODEGAS"<<endl;
-            break;
-        case 3:
-            cout<<"Funcion RANKING VARIETALES"<<endl;
-            break;
-        case 4:
-            exit(EXIT_SUCCESS);
-
-    }
-}
+		switch (opc){
+			case 1:
+				cout<<"Funcion RANKING GENERAL"<<endl;
+				break;
+			case 2:
+				cout<<"Funcion RANKING POR BODEGAS"<<endl;
+				break;
+			case 3:
+				cout<<"Funcion RANKING VARIETALES"<<endl;
+				break;
+			case 4:
+				exit(EXIT_SUCCESS);
+		}
+	}
 }
 
 int main()
@@ -95,10 +98,25 @@ int main()
 
         cursor = cursor->next;
     }
+	
+	cout << "probando deleteNode (enter)" << endl;
+	getchar();
+	
+	cursor = list.head;
+	
+	deleteNode(list, aux);
+	
+	while (cursor != NULL)
+    {
+        ptrUsuario = (Usuario*) cursor->ptrData;
+		
+		cout << ptrUsuario->sName << endl;
+		
+		aux = cursor;
+        cursor = cursor->next;
+    }
 
     return 0;
-
-
 }
 
 

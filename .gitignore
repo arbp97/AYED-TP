@@ -3,6 +3,8 @@ obj/*
 build-Debug/*
 compiler_flags.txt
 tags.txt
+.tags
+tags
 tda-practica2.workspace
 tda-practica2.mk
 tda-practica2.project

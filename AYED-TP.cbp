@@ -39,8 +39,10 @@
 		<Unit filename="src/headers/list.hpp" />
 		<Unit filename="src/headers/seleccion.hpp" />
 		<Unit filename="src/headers/usuario.hpp" />
+		<Unit filename="src/headers/util.hpp" />
 		<Unit filename="src/headers/vino.hpp" />
 		<Unit filename="src/lib/list.cpp" />
+		<Unit filename="src/lib/util.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions />
 	</Project>

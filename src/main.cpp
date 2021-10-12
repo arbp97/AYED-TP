@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//test function para cargar TDA desde un string de archivo (mover a su propia libreria)
 void loadUser(Usuario &user, string text)
 {
 	string aux;
@@ -40,7 +41,7 @@ void loadUser(Usuario &user, string text)
 			{
 				isAddressSet = true;
 
-				user.sAddress = aux;
+				setAddress(user, aux);
 			}
 			else
 			{
@@ -60,6 +61,7 @@ void loadUser(Usuario &user, string text)
 
 }
 
+//test function para leer archivo de usuarios
 void readUsers()
 {
 	string text;

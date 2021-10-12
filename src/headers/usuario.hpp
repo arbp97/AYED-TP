@@ -48,4 +48,12 @@ void setAge(Usuario& usuario, int iAge);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+string getAddress(Usuario &usuario);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+void setAddress(Usuario &usuario, string sAddress);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 #endif // __USUARIO_HPP__

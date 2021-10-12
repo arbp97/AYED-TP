@@ -1,6 +1,5 @@
 #include "list.hpp"
 
-
 /* Implementacion de primitivas*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

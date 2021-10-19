@@ -7,8 +7,19 @@
 #include <fstream>
 #include <cstdlib>
 #define EXIT_SUCCESS 0
+#include<string>
 
 using namespace std;
+
+//estructura provisoria para cargar el reporte de vinos
+typedef struct r1{
+int id;
+int cant=0;
+};
+
+
+
+
 
 //test function para cargar TDA desde un string de archivo (mover a su propia libreria)
 void loadUser(Usuario &user, string text)
@@ -81,117 +92,383 @@ void readUsers()
 	file.close();
 }
 
-void llamarMenu(){
 
-    int opc=0;
+//Funcion carga del TDA de vinos
+void loadWine(Vino &vino, string text)
+{
 
-	while(1){
+	string aux;
+	bool isIdSet = false;
+	bool isLabelSet= false;
+	bool isCellarSet = false;
+	bool isWineSegmentSet = false;
+	bool isStrainSet = false;
+    bool isYearSet = false;
+    bool isTerroirSet = false;
 
-		cout<<"*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
-		cout<<"1-Ranking general de vinos seleccionados en el ultimo aÃ±o."<<endl;
-		cout<<"2-Ranking por bodegas elegidas en el ultimo aÃ±o."<<endl;
-		cout<<"3-Ranking de varietales elegidos por rango etario."<<endl;
-		cout<<"4-Salir."<<endl;
-		cin>>opc;
+	for (int i = 0; i < text.length(); i++)
+	{
+		if ((text.at(i) == '-') or (text.at(i) == ';'))
+		{
+            trim(aux);
 
-		switch (opc){
-			case 1:
-				cout<<"Funcion RANKING GENERAL"<<endl;
-				break;
-			case 2:
-				cout<<"Funcion RANKING POR BODEGAS"<<endl;
-				break;
-			case 3:
-				cout<<"Funcion RANKING VARIETALES"<<endl;
-				break;
-			case 4:
-				exit(EXIT_SUCCESS);
+			if (!isIdSet)
+			{
+				isIdSet = true;
+
+				setId(vino, stoi(aux));
+			}
+			else if(!isLabelSet)
+			{
+				isLabelSet = true;
+
+				setLabel(vino, aux);
+			}
+			else if(!isCellarSet)
+			{
+				isCellarSet = true;
+
+				setCellar(vino, aux);
+			}
+			else if(!isWineSegmentSet)
+			{
+				isWineSegmentSet = true;
+
+				setWineSegment(vino, aux);
+			}
+			else if (!isStrainSet)
+			{
+				isStrainSet = true;
+
+				setStrain(vino, aux);
+			}
+            else if (!isYearSet)
+			{
+				isYearSet = true;
+
+				setYear(vino, stoi(aux));
+			}
+			else {
+                isTerroirSet =true;
+                setTerroir(vino,aux);
+			}
+			aux = "";
+		}
+		else
+		{
+			aux = aux + text.at(i);
+		}
+
+	}
+
+}
+
+//test function para leer archivo de vinos
+void readWines()
+{
+	string text;
+	ifstream file("data/vinos.txt"); //prestar atencion al nombre del archivo
+
+	while(getline(file, text))
+	{
+		Vino* tempVino = new Vino;
+
+		loadWine(*tempVino, text);
+		cout << tempVino->id << endl;
+		cout << tempVino->sLabel << endl;
+
+		delete tempVino;
+	}
+
+	file.close();
+}
+
+
+
+// TDA de Seleccion, me quedé en el seteo de vinos
+
+void loadSeleccion(Seleccion &seleccion, string text)
+{
+    string aux;
+	bool isIdSet = false;
+	bool isMonthSet = false;
+	bool isYearSet = false;
+	bool isWineSet1 = false;
+	bool isWineSet2 = false;
+	bool isWineSet3 = false;
+	bool isWineSet4 = false;
+	bool isWineSet5 = false;
+	bool isWineSet6 = false;
+
+
+	for (int i = 0; i < text.length(); i++)
+	{
+		if ((text.at(i) == '-') or (text.at(i) == ';'))
+		{
+            trim(aux);
+
+			if (!isIdSet)
+			{
+				isIdSet = true;
+
+				setId(seleccion, stoi(aux));
+			}
+			else if(!isMonthSet)
+			{
+				isMonthSet = true;
+				setMonth(seleccion, stoi(aux));
+			}
+			else if(!isYearSet)
+			{
+				isYearSet = true;
+
+				setYear(seleccion, stoi(aux));
+			}
+			else if (!isWineSet1)
+            {
+                isWineSet1 =true;
+                setVino1(seleccion, stoi(aux));
+            }
+            else if (!isWineSet2)
+            {
+                isWineSet2 =true;
+                setVino2(seleccion, stoi(aux));
+            }
+            else if (!isWineSet3)
+            {
+                isWineSet3 =true;
+                setVino3(seleccion, stoi(aux));
+            }
+            else if (!isWineSet4)
+            {
+                isWineSet4 =true;
+                setVino4(seleccion, stoi(aux));
+            }
+            else if (!isWineSet5)
+            {
+                isWineSet5 =true;
+                setVino5(seleccion, stoi(aux));
+            }
+            else
+            {
+                isWineSet6 =true;
+                setVino6(seleccion, stoi(aux));
+            }
+
+
+			aux = "";
+		}
+		else
+		{
+			aux = aux + text.at(i);
+		}
+
+	}
+
+}
+
+void readSeleccion()
+{
+	string text;
+	ifstream file("data/seleccion.txt");
+    int cont=0;
+	while(getline(file, text))
+	{
+		Seleccion* tempSeleccion = new Seleccion;
+
+
+		loadSeleccion(*tempSeleccion, text);
+		cout << tempSeleccion->id << endl;
+		cout << tempSeleccion->year << endl;
+
+		//cont++;
+		delete tempSeleccion;
+	}
+
+	file.close();
+
+}
+int readCantWines()
+{
+	int cont=0;
+	string text;
+	ifstream file("data/vinos.txt"); //prestar atencion al nombre del archivo
+
+	while(getline(file, text))
+	{
+		Vino* tempVino = new Vino;
+
+		loadWine(*tempVino, text);
+		cont++;
+		delete tempVino;
+	}
+
+	file.close();
+	return cont;
+}
+
+
+void ordenarArray(r1 miArray[]){
+	r1 temporal;
+
+	for (int i = 0;i < 14; i++){
+		for (int j = 0; j< 14-1; j++){
+			if (miArray[j].cant < miArray[j+1].cant){ // Ordena el array de mayor a menor, cambiar el "<" a ">" para ordenar de menor a mayor
+			temporal = miArray[j];
+			miArray[j] = miArray[j+1];
+			miArray[j+1] = temporal;
+			}
 		}
 	}
 }
 
-int main()
-{
-    //llamarMenu();
-	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+void rankingYear(int y){
 
-    Usuario* usuario = new Usuario;
+    int cant=readCantWines();
+ cout<< "cantidad de filas: "<<cant<<endl;
+    r1 *arregloStructWines = new r1[cant];
 
-    createUsuario(*usuario, 1, "Alan", 21, "Micasa");
+    int i=0;
+    string text;
+	ifstream file("data/vinos.txt");
 
-    cout << getName(*usuario) << endl;
+        while(getline(file, text)){
 
-    setName(*usuario, "Rob");
+		Vino* tempVino = new Vino;
 
-    cout << getName(*usuario) << endl;
+		loadWine(*tempVino, text);
 
-	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-	Vino* vino_1 = new Vino;
+                cout<<"Estoy en i="<<i<<endl;
+		arregloStructWines[i]= {tempVino->id,0} ;
+		i++;
 
-	createVino(*vino_1, 1, "Malbec", "Villa Tintos", "Tinto", "Malbec", 2018, "Tierrita sabrosa");
+		delete tempVino;
 
-	cout << getLabel(*vino_1) << endl;
-
-	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-
-	Vino vinitos[6];
-
-	vinitos[0] = *vino_1;
-
-	Seleccion* seleccion = new Seleccion;
-
-	createSeleccion(*seleccion, getId(*usuario), SEPTIEMBRE, 2021, vinitos);
-
-	cout << getLabel(*(getVinos(*seleccion))) << endl;
-
-	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-
-	cout << "\n\n\n" << endl;
-
-	List list;
-
-	Usuario* usuario2 = new Usuario;
-
-    createUsuario(*usuario2, 2, "Ramon", 21, "Micasa");
-
-	addNode(list, usuario);
-	addNode(list, usuario2);
-
-	Node* cursor = new Node;
-	Node* aux = new Node;
-	Usuario* ptrUsuario = new Usuario;
-    cursor = list.head;
-
-    while (cursor != NULL)
-    {
-        ptrUsuario = (Usuario*) cursor->ptrData;
-
-		cout << ptrUsuario->sName << endl;
-
-		aux = cursor;
-        cursor = cursor->next;
     }
 
-	cout << "probando deleteNode (enter)" << endl;
-	getchar();
-
-	cursor = list.head;
-
-	deleteNode(list, aux);
-
-	while (cursor != NULL)
-    {
-        ptrUsuario = (Usuario*) cursor->ptrData;
-
-		cout << ptrUsuario->sName << endl;
-
-        cursor = cursor->next;
+    cout<<"***Arreglo de vinos creado***"<<endl;
+    for (int i=0;i<cant;i++){
+        cout << arregloStructWines[i].id <<" " <<arregloStructWines[i].cant<<endl;
     }
+    file.close();
 
-	readUsers();
+    //cargo el archivo de seleccion para llenar el arreglo
+    string text2;
+	ifstream file2("data/seleccion.txt");
 
-    return 0;
+
+
+
+
+
+
+	while(getline(file2, text2))
+	{
+		Seleccion* tempSeleccion = new Seleccion;
+		loadSeleccion(*tempSeleccion, text2);
+
+		if (tempSeleccion->year==y){
+                for (int j=0;j<cant;j++){
+                        //cout<<"Estoy en j="<<j<<endl;
+                    if (arregloStructWines[j].id==tempSeleccion->wine1){
+                        arregloStructWines[j].cant++;
+                    }
+                    else if (arregloStructWines[j].id==tempSeleccion->wine2){
+                        arregloStructWines[j].cant++;
+                    }
+                    if (arregloStructWines[j].id==tempSeleccion->wine3){
+                        arregloStructWines[j].cant++;
+                    }
+                    else if (arregloStructWines[j].id==tempSeleccion->wine4){
+                        arregloStructWines[j].cant++;
+                    }
+                    if (arregloStructWines[j].id==tempSeleccion->wine5){
+                        arregloStructWines[j].cant++;
+                    }
+                    else if(arregloStructWines[j].id==tempSeleccion->wine6){
+                        arregloStructWines[j].cant++;
+                    }
+                }
+
+		}
+
+
+		delete tempSeleccion;
+
+	}
+    cout<<"***Arreglo de vinos cargado***"<<endl;
+    for (int i=0;i<cant;i++){
+            if(arregloStructWines[i].cant!=0)
+        cout << arregloStructWines[i].id <<" " <<arregloStructWines[i].cant<<endl;
+    }
+    ordenarArray(arregloStructWines);
+
+    cout<<"***Arreglo de vinos ordenado***"<<endl;
+    for (int i=0;i<cant;i++){
+            if(arregloStructWines[i].cant!=0)
+        cout << arregloStructWines[i].id <<" " <<arregloStructWines[i].cant<<endl;
+    }
+	file2.close();
+
+
 }
 
 
+
+void llamarMenu(){
+
+    char opc; // modifique por un char para que no tire error en caso de seleccionar una letra
+    int year=0;
+	while(1){
+
+		cout<<"*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
+		cout<<"1-Ranking general de vinos seleccionados en el ultimo año."<<endl;
+		cout<<"2-Ranking por bodegas elegidas en el ultimo año."<<endl;
+		cout<<"3-Ranking de varietales elegidos por rango etario."<<endl;
+		cout<<"4-Llamar readUsers"<<endl;
+		cout<<"5-Llamar readWines"<<endl;
+		cout<<"6-Llamar readSeleccion"<<endl;
+		cout<<"7-Salir."<<endl;
+
+		cin>>opc;
+
+		switch (opc){
+			case '1':
+
+            cout<< "ingrese año que desee calcular: ";
+            cin>>year;
+
+           rankingYear(year);
+           //rankingYear();
+			break;
+			case '2':
+				cout<<"Funcion RANKING POR BODEGAS"<<endl;
+				break;
+			case '3':
+				cout<<"Funcion RANKING VARIETALES"<<endl;
+				break;
+			case '4':
+				readUsers();
+				break;
+			case '5':
+                readWines();
+                break;
+			case '6':
+		    readSeleccion();
+			    break;
+            case '7':
+				exit(EXIT_SUCCESS);
+            default:
+                cout<<"Ingrese una opcion correcta"<<endl; break;
+		}
+	}
+}
+
+
+int main()
+{
+    llamarMenu();
+
+    return 0;
+}

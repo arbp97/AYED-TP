@@ -1,4 +1,5 @@
 #include <algorithm>
+#include<iostream>
 #include <cctype>
 #include <locale>
 
@@ -28,5 +29,16 @@ void rightTrim(std::string &s);
 void trim(std::string &s);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+//contiene elemendo en array
+
+int contieneElemento(int matriz[][2], int elemento);
+//void agregoElemento(r1 arreglo[], int elemento);
+
+void mostrarElementos(int matriz[][2]);
+
+
+void mostrarMatriz(int **);
+
 
 #endif // _!_UTIL_HPP__

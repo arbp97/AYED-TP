@@ -2,6 +2,8 @@
 #include<iostream>
 #include <cctype>
 #include <locale>
+#include "list.hpp"
+#include "vino.hpp"
 
 #ifndef __UTIL_HPP__
 #define __UTIL_HPP__
@@ -31,14 +33,22 @@ void trim(std::string &s);
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 //contiene elemendo en array
-
 int contieneElemento(int matriz[][2], int elemento);
 //void agregoElemento(r1 arreglo[], int elemento);
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 void mostrarElementos(int matriz[][2]);
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 void mostrarMatriz(int **);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+Vino* findWineById(List wines, int id);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 
 #endif // _!_UTIL_HPP__

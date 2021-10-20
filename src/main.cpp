@@ -3,6 +3,7 @@
 #include "seleccion.hpp"
 #include "list.hpp"
 #include "util.hpp"
+#include "files.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -16,278 +17,7 @@ typedef struct r1{
 int id;
 int cant=0;
 };
-
-
-
-
-
-//test function para cargar TDA desde un string de archivo (mover a su propia libreria)
-void loadUser(Usuario &user, string text)
-{
-	string aux;
-	bool isIdSet = false;
-	bool isNameSet = false;
-	bool isAddressSet = false;
-	bool isAgeSet = false;
-
-	for (int i = 0; i < text.length(); i++)
-	{
-		if ((text.at(i) == '-') or (text.at(i) == ';'))
-		{
-            trim(aux);
-
-			if (!isIdSet)
-			{
-				isIdSet = true;
-
-				setId(user, stoi(aux));
-			}
-			else if(!isNameSet)
-			{
-				isNameSet = true;
-
-				setName(user, aux);
-			}
-			else if(!isAddressSet)
-			{
-				isAddressSet = true;
-
-				setAddress(user, aux);
-			}
-			else
-			{
-				isAgeSet = true;
-
-				setAge(user, stoi(aux));
-			}
-
-			aux = "";
-		}
-		else
-		{
-			aux = aux + text.at(i);
-		}
-
-	}
-
-}
-
-//test function para leer archivo de usuarios
-void readUsers()
-{
-	string text;
-	ifstream file("data/usuarios.txt");
-
-	while(getline(file, text))
-	{
-		Usuario* tempUser = new Usuario;
-
-		loadUser(*tempUser, text);
-		cout << tempUser->sName << endl;
-		cout << tempUser->iAge << endl;
-
-		delete tempUser;
-	}
-
-	file.close();
-}
-
-
-//Funcion carga del TDA de vinos
-void loadWine(Vino &vino, string text)
-{
-
-	string aux;
-	bool isIdSet = false;
-	bool isLabelSet= false;
-	bool isCellarSet = false;
-	bool isWineSegmentSet = false;
-	bool isStrainSet = false;
-    bool isYearSet = false;
-    bool isTerroirSet = false;
-
-	for (int i = 0; i < text.length(); i++)
-	{
-		if ((text.at(i) == '-') or (text.at(i) == ';'))
-		{
-            trim(aux);
-
-			if (!isIdSet)
-			{
-				isIdSet = true;
-
-				setId(vino, stoi(aux));
-			}
-			else if(!isLabelSet)
-			{
-				isLabelSet = true;
-
-				setLabel(vino, aux);
-			}
-			else if(!isCellarSet)
-			{
-				isCellarSet = true;
-
-				setCellar(vino, aux);
-			}
-			else if(!isWineSegmentSet)
-			{
-				isWineSegmentSet = true;
-
-				setWineSegment(vino, aux);
-			}
-			else if (!isStrainSet)
-			{
-				isStrainSet = true;
-
-				setStrain(vino, aux);
-			}
-            else if (!isYearSet)
-			{
-				isYearSet = true;
-
-				setYear(vino, stoi(aux));
-			}
-			else {
-                isTerroirSet =true;
-                setTerroir(vino,aux);
-			}
-			aux = "";
-		}
-		else
-		{
-			aux = aux + text.at(i);
-		}
-
-	}
-
-}
-
-//test function para leer archivo de vinos
-void readWines()
-{
-	string text;
-	ifstream file("data/vinos.txt"); //prestar atencion al nombre del archivo
-
-	while(getline(file, text))
-	{
-		Vino* tempVino = new Vino;
-
-		loadWine(*tempVino, text);
-		cout << tempVino->id << endl;
-		cout << tempVino->sLabel << endl;
-
-		delete tempVino;
-	}
-
-	file.close();
-}
-
-
-
-// TDA de Seleccion, me quedé en el seteo de vinos
-
-void loadSeleccion(Seleccion &seleccion, string text)
-{
-    string aux;
-	bool isIdSet = false;
-	bool isMonthSet = false;
-	bool isYearSet = false;
-	bool isWineSet1 = false;
-	bool isWineSet2 = false;
-	bool isWineSet3 = false;
-	bool isWineSet4 = false;
-	bool isWineSet5 = false;
-	bool isWineSet6 = false;
-
-
-	for (int i = 0; i < text.length(); i++)
-	{
-		if ((text.at(i) == '-') or (text.at(i) == ';'))
-		{
-            trim(aux);
-
-			if (!isIdSet)
-			{
-				isIdSet = true;
-
-				setId(seleccion, stoi(aux));
-			}
-			else if(!isMonthSet)
-			{
-				isMonthSet = true;
-				setMonth(seleccion, stoi(aux));
-			}
-			else if(!isYearSet)
-			{
-				isYearSet = true;
-
-				setYear(seleccion, stoi(aux));
-			}
-			else if (!isWineSet1)
-            {
-                isWineSet1 =true;
-                setVino1(seleccion, stoi(aux));
-            }
-            else if (!isWineSet2)
-            {
-                isWineSet2 =true;
-                setVino2(seleccion, stoi(aux));
-            }
-            else if (!isWineSet3)
-            {
-                isWineSet3 =true;
-                setVino3(seleccion, stoi(aux));
-            }
-            else if (!isWineSet4)
-            {
-                isWineSet4 =true;
-                setVino4(seleccion, stoi(aux));
-            }
-            else if (!isWineSet5)
-            {
-                isWineSet5 =true;
-                setVino5(seleccion, stoi(aux));
-            }
-            else
-            {
-                isWineSet6 =true;
-                setVino6(seleccion, stoi(aux));
-            }
-
-
-			aux = "";
-		}
-		else
-		{
-			aux = aux + text.at(i);
-		}
-
-	}
-
-}
-
-void readSeleccion()
-{
-	string text;
-	ifstream file("data/seleccion.txt");
-    int cont=0;
-	while(getline(file, text))
-	{
-		Seleccion* tempSeleccion = new Seleccion;
-
-
-		loadSeleccion(*tempSeleccion, text);
-		cout << tempSeleccion->id << endl;
-		cout << tempSeleccion->year << endl;
-
-		//cont++;
-		delete tempSeleccion;
-	}
-
-	file.close();
-
-}
+/*
 int readCantWines()
 {
 	int cont=0;
@@ -306,7 +36,7 @@ int readCantWines()
 	file.close();
 	return cont;
 }
-
+*/
 
 void ordenarArray(r1 miArray[]){
 	r1 temporal;
@@ -321,7 +51,7 @@ void ordenarArray(r1 miArray[]){
 		}
 	}
 }
-
+/*
 void rankingYear(int y){
 
     int cant=readCantWines();
@@ -413,7 +143,7 @@ void rankingYear(int y){
 
 
 }
-
+*/
 
 
 void llamarMenu(){
@@ -423,8 +153,8 @@ void llamarMenu(){
 	while(1){
 
 		cout<<"*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
-		cout<<"1-Ranking general de vinos seleccionados en el ultimo año."<<endl;
-		cout<<"2-Ranking por bodegas elegidas en el ultimo año."<<endl;
+		cout<<"1-Ranking general de vinos seleccionados en el ultimo aï¿½o."<<endl;
+		cout<<"2-Ranking por bodegas elegidas en el ultimo aï¿½o."<<endl;
 		cout<<"3-Ranking de varietales elegidos por rango etario."<<endl;
 		cout<<"4-Llamar readUsers"<<endl;
 		cout<<"5-Llamar readWines"<<endl;
@@ -436,10 +166,10 @@ void llamarMenu(){
 		switch (opc){
 			case '1':
 
-            cout<< "ingrese año que desee calcular: ";
+            cout<< "ingrese aï¿½o que desee calcular: ";
             cin>>year;
 
-           rankingYear(year);
+          // rankingYear(year);
            //rankingYear();
 			break;
 			case '2':
@@ -449,13 +179,13 @@ void llamarMenu(){
 				cout<<"Funcion RANKING VARIETALES"<<endl;
 				break;
 			case '4':
-				readUsers();
+				//readUsers();
 				break;
 			case '5':
-                readWines();
+               // readWines();
                 break;
 			case '6':
-		    readSeleccion();
+		    //readSeleccion();
 			    break;
             case '7':
 				exit(EXIT_SUCCESS);
@@ -468,6 +198,46 @@ void llamarMenu(){
 
 int main()
 {
+	List listUsuarios;
+	List listVinos;
+	List listSeleccion;
+
+	Node* cursor = new Node;
+
+    readUsers(listUsuarios);
+	readWines(listVinos);
+	readSeleccion(listSeleccion);
+
+	//cargando las selecciones por completo (con readSeleccion solo queda el id)
+	Seleccion* ptrSeleccion = new Seleccion;
+    cursor = listSeleccion.head;
+
+    while (cursor != NULL)
+    {
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
+
+		cursor->ptrData = findWineById(listVinos, ptrSeleccion->id);
+
+		cout << ptrSeleccion->year << endl;
+
+        cursor = cursor->next;
+    }
+
+
+	Usuario* ptrUsuarioTest = new Usuario;
+    cursor = listUsuarios.head;
+
+    while (cursor != NULL)
+    {
+        ptrUsuarioTest = (Usuario*) cursor->ptrData;
+
+		cout << ptrUsuarioTest->sName << endl;
+
+        cursor = cursor->next;
+    }
+
+    getchar();
+
     llamarMenu();
 
     return 0;

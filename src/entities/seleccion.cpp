@@ -4,29 +4,31 @@ using namespace std;
 
 /* Implementacion de primitivas*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/*
-void createSeleccion(Seleccion &seleccion, int id, Month month, int year, int wines[WINE_QTY])
+
+void createSeleccion(Seleccion &seleccion, int id, Month month, int year, Vino wines[WINE_QTY])
 {
 	seleccion.id = id;
 	seleccion.month = month;
 	seleccion.year = year;
 	setVinos(seleccion, wines);
 }
-*/
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-void createSeleccion(Seleccion &seleccion, int id, int month, int year, int wine1,int wine2, int wine3, int wine4, int wine5, int wine6)
+//empty constructor
+void createSeleccion(Seleccion &seleccion)
 {
-	seleccion.id = id;
-	seleccion.month = month;
-	seleccion.year = year;
-	seleccion.wine1 = wine1;
-	seleccion.wine2 = wine2;
-	seleccion.wine3 = wine3;
-	seleccion.wine4 = wine4;
-	seleccion.wine5 = wine5;
-	seleccion.wine6 = wine6;
+	seleccion.id = -1;
+	seleccion.month = MARZO;
+	seleccion.year = 0;
+
+	for(int i=0;i<WINE_QTY;i++)
+	{
+		Vino* vino = new Vino;
+		seleccion.wines[i] = *vino;
+	}
 }
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 int getId(Seleccion &seleccion)
@@ -43,14 +45,14 @@ void setId(Seleccion &seleccion, int id)
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-int getMonth(Seleccion &seleccion)
+Month getMonth(Seleccion &seleccion)
 {
 	return seleccion.month;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-void setMonth(Seleccion &seleccion, int month)
+void setMonth(Seleccion &seleccion, Month month)
 {
 	seleccion.month = month;
 }
@@ -73,81 +75,29 @@ void setYear(Seleccion &seleccion, int year)
 
 /* Devuelve un puntero al primero del array de vinos */
 
-int getVino1(Seleccion &seleccion)
+Vino* getVinos(Seleccion &seleccion)
 {
-    	return seleccion.wine1;
+	return seleccion.wines;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-void setVino1(Seleccion &seleccion, int wine1)
+void setVinos(Seleccion &seleccion, Vino wines[WINE_QTY])
 {
-	seleccion.wine1 = wine1;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-int getVino2(Seleccion &seleccion)
-{
-    	return seleccion.wine2;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-void setVino2(Seleccion &seleccion, int wine2)
-{
-	seleccion.wine2 = wine2;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-int getVino3(Seleccion &seleccion)
-{
-    	return seleccion.wine3;
+	for(int i=0;i<WINE_QTY;i++)
+	{
+		seleccion.wines[i] = *(wines + i);
+	}
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-void setVino3(Seleccion &seleccion, int wine3)
+void setVino(Seleccion &seleccion, Vino &wine, int place)
 {
-	seleccion.wine3 = wine3;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-int getVino4(Seleccion &seleccion)
-{
-    	return seleccion.wine4;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-void setVino4(Seleccion &seleccion, int wine4)
-{
-	seleccion.wine4 = wine4;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-int getVino5(Seleccion &seleccion)
-{
-    	return seleccion.wine5;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-void setVino5(Seleccion &seleccion, int wine5)
-{
-	seleccion.wine5 = wine5;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-int getVino6(Seleccion &seleccion)
-{
-    	return seleccion.wine6;
-}
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-void setVino6(Seleccion &seleccion, int wine6)
-{
-	seleccion.wine6 = wine6;
+	if ((place >= 0) && (place < WINE_QTY))
+	{
+		seleccion.wines[place] = wine;
+	}
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

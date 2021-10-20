@@ -48,6 +48,10 @@ void createSeleccion(Seleccion &seleccion, int id, Month month, int year, Vino w
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+void createSeleccion(Seleccion &seleccion);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 int getId(Seleccion &seleccion);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -79,6 +83,10 @@ Vino* getVinos(Seleccion &seleccion);
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 void setVinos(Seleccion &seleccion, Vino wines[WINE_QTY]);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+void setVino(Seleccion &seleccion, Vino &wine, int place);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

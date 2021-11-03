@@ -1,5 +1,5 @@
-#include "files.hpp"
-#include "util.hpp"
+#include "../headers/files.hpp"
+#include "../headers/util.hpp"
 #include <fstream>
 #include<string>
 
@@ -265,6 +265,7 @@ void readSeleccion(List &listSeleccion)
 		loadSeleccion(*newSeleccion, text);
 
         addNode(listSeleccion, newSeleccion);
+
 	}
 
 	file.close();

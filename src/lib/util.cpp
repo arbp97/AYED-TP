@@ -1,5 +1,6 @@
-#include "util.hpp"
-
+#include "../headers/util.hpp"
+#include "../headers/files.hpp"
+#include<conio.h>
 /* Implementacion de primitivas*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
@@ -93,7 +94,236 @@ Vino* findWineById(List wines, int id)
     return ptrVino;
 }
 
+void ordenarArray(r1 miArray[]){
+	r1 temporal;
 
+	for (int i = 0;i < 14; i++){
+		for (int j = 0; j< 14-1; j++){
+			if (miArray[j].cant < miArray[j+1].cant){ // Ordena el array de mayor a menor, cambiar el "<" a ">" para ordenar de menor a mayor
+			temporal = miArray[j];
+			miArray[j] = miArray[j+1];
+			miArray[j+1] = temporal;
+			}
+		}
+	}
+}
+
+void ordenarArrayAlfabeticamente(r1 miArray[]){
+	r1 temporal;
+
+	for (int i = 0;i < 14; i++){
+		for (int j = 0; j< 14-1; j++){
+			if (miArray[j].sCellar > miArray[j+1].sCellar){ // Ordena el array de mayor a menor, cambiar el "<" a ">" para ordenar de menor a mayor
+			temporal = miArray[j];
+			miArray[j] = miArray[j+1];
+			miArray[j+1] = temporal;
+			}
+		}
+	}
+}
+
+void rankingYear()
+{
+	List listUsuarios;
+	List listVinos;
+	List listSeleccion;
+
+	Node* cursor1 = new Node; //Nodo lista vinos
+
+
+    readUsers(listUsuarios);
+	readWines(listVinos);
+	readSeleccion(listSeleccion);
+    //tamaño de mi array
+	int cant=length(listVinos);
+	cout << "Tamaño de la lista "<<cant<<endl;
+	//arreglo para el reporte
+	r1 *arregloStructWines = new r1[cant];
+
+
+    Vino* ptrVino = new Vino;
+    cursor1 = listVinos.head;
+    int v=0;
+    while (cursor1 != NULL)   //leo lista de vinos y cargo arreglo de reporte
+    {
+        ptrVino = (Vino*) cursor1->ptrData;
+        cout << ptrVino->id <<endl;
+        //cursor1->ptrData = findWineById(listVinos, ptrVino->id);
+        arregloStructWines[v]={ptrVino->id,ptrVino->sLabel,0};
+        //cout <<arregloStructWines[v].id << " " << arregloStructWines[v].cant <<endl;
+        v++;
+        cursor1 = cursor1->next;
+
+    }
+
+    // imprimo para validar que esté cargado el arreglo
+    for (int i=0;i<cant;i++){
+        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
+    }
+    Node* cursor = new Node;
+	Seleccion* ptrSeleccion = new Seleccion;
+    cursor = listSeleccion.head;
+    int i=0;
+    while (cursor != NULL)
+    {
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
+
+		cursor->ptrData = findWineById(listVinos, ptrSeleccion->id);
+
+
+
+
+		if( ptrSeleccion->year==2021){ //valido año
+		    for (int i=0;i<cant;i++){
+                for(int j=0;j<6;j++){
+                        if (ptrSeleccion->wines[j].id==arregloStructWines[i].id) //valido id de seleccion sea igual al id del arreglo
+                            arregloStructWines[i].cant++;
+		    }
+
+		    }
+
+
+
+    }cursor = cursor->next;
+}
+ordenarArray(arregloStructWines);
+// imprimo para validar que esté cargado y ordenado
+
+cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
+    for (int i=0;i<cant;i++){
+            if(arregloStructWines[i].id>0)
+        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
+    }
+/* //LISTA DE USUARIOS
+
+	Usuario* ptrUsuarioTest = new Usuario;
+    cursor = listUsuarios.head;
+
+    while (cursor != NULL)
+    {
+        ptrUsuarioTest = (Usuario*) cursor->ptrData;
+
+		cout << ptrUsuarioTest->sName << endl;
+
+        cursor = cursor->next;
+    }*/
+
+    cout<<"Pulse una tecla para continuar";
+    getch();
+}
+
+void rankingCellar(){
+
+	List listUsuarios;
+	List listVinos;
+	List listSeleccion;
+
+	Node* cursor1 = new Node; //Nodo lista vinos
+
+
+    readUsers(listUsuarios);
+	readWines(listVinos);
+	readSeleccion(listSeleccion);
+    //tamaño de mi array
+	int cant=length(listVinos);
+	cout << "Tamaño de la lista "<<cant<<endl;
+	//arreglo para el reporte
+	r1 *arregloStructWines = new r1[cant];
+	r1 *arregloStructWinesFinal = new r1[cant];
+
+
+    Vino* ptrVino = new Vino;
+    cursor1 = listVinos.head;
+    int v=0;
+    while (cursor1 != NULL)   //leo lista de vinos y cargo arreglo de reporte
+    {
+        ptrVino = (Vino*) cursor1->ptrData;
+        cout << ptrVino->id <<endl;
+        //cursor1->ptrData = findWineById(listVinos, ptrVino->id);
+        arregloStructWines[v]={ptrVino->id,ptrVino->sLabel,0,ptrVino->sCellar};
+        //cout <<arregloStructWines[v].id << " " << arregloStructWines[v].cant <<endl;
+        v++;
+        cursor1 = cursor1->next;
+    }
+
+    // imprimo para validar que esté cargado el arreglo
+    for (int i=0;i<cant;i++){
+        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
+    }
+    Node* cursor = new Node;
+	Seleccion* ptrSeleccion = new Seleccion;
+    cursor = listSeleccion.head;
+    while (cursor != NULL)
+    {
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
+
+		cursor->ptrData = findWineById(listVinos, ptrSeleccion->id);
+
+
+
+
+		if( ptrSeleccion->year==2021){ //valido año
+		    for (int i=0;i<cant;i++){
+                for(int j=0;j<6;j++){
+                        if (ptrSeleccion->wines[j].id==arregloStructWines[i].id) //valido id de seleccion sea igual al id del arreglo
+                            arregloStructWines[i].cant++;
+		    }
+
+		    }
+
+
+
+    }cursor = cursor->next;
+}
+ordenarArray(arregloStructWines);
+// imprimo para validar que esté cargado y ordenado
+
+cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
+    for (int i=0;i<cant;i++){
+            if(arregloStructWines[i].id>0)
+        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
+    }
+    ordenarArrayAlfabeticamente(arregloStructWines);
+
+    cout<<"***Arreglo de vinos ordenado por bodega***"<<endl;
+    for (int i=0;i<cant;i++){
+            if(arregloStructWines[i].cant!=0)
+        cout << arregloStructWines[i].id <<" " <<arregloStructWines[i].sCellar<<" " <<arregloStructWines[i].cant<<endl;
+    }
+
+
+    string auxCellar;
+    for (int i=0;i<cant;i++){
+            if  (arregloStructWines[i].sCellar!=auxCellar){
+                auxCellar=arregloStructWines[i].sCellar;
+            }
+            else{
+                arregloStructWines[i].cant=arregloStructWines[i].cant+arregloStructWines[i-1].cant;
+            }
+
+            cout << arregloStructWines[i].id <<" "<< arregloStructWines[i].sCellar <<" " <<arregloStructWines[i].cant<<endl;
+    }
+
+    for(int i=0;i<cant;i++){
+        if(arregloStructWines[i].sCellar!=arregloStructWines[i-1].sCellar){
+            arregloStructWinesFinal[i]=arregloStructWines[i-1];
+            //cout << arregloStructWines[i-1].id <<" "<< arregloStructWines[i-1].sCellar <<" " <<arregloStructWines[i-1].cant<<endl;
+        }
+    }
+    arregloStructWinesFinal[cant-1]=arregloStructWines[cant-1];
+
+        cout<<" "<<endl;
+        cout<<"***Arreglo de bodegas***"<<endl;
+    ordenarArray(arregloStructWinesFinal);
+    for(int i=0;i<cant;i++){
+            if(arregloStructWinesFinal[i].cant!=0){
+        cout<<arregloStructWinesFinal[i].id <<" "<<arregloStructWinesFinal[i].sCellar <<" " <<arregloStructWinesFinal[i].cant<<endl;
+            }
+    }
+    cout<<"Pulse una tecla para continuar";
+    getch();
+
+}
 
 /*
 void mostrarMatriz(int **punteroM){

@@ -1,9 +1,9 @@
-#include "usuario.hpp"
-#include "vino.hpp"
-#include "seleccion.hpp"
-#include "list.hpp"
-#include "files.hpp"
-#include "util.hpp"
+#include "headers/usuario.hpp"
+#include "headers/vino.hpp"
+#include "headers/seleccion.hpp"
+#include "headers/list.hpp"
+#include "headers/files.hpp"
+#include "headers/util.hpp"
 #include <iostream>
 #include <cstdlib>
 #define EXIT_SUCCESS 0
@@ -67,24 +67,24 @@ int test()
         ptrUsuario = (Usuario*) cursor->ptrData;
 
 		cout << ptrUsuario->sName << endl;
-	
+
 		aux = cursor;
         cursor = cursor->next;
     }
-	
+
 	cout << "probando deleteNode (enter)" << endl;
 	getchar();
-	
+
 	cursor = list.head;
-	
+
 	deleteNode(list, aux);
-	
+
 	while (cursor != NULL)
     {
         ptrUsuario = (Usuario*) cursor->ptrData;
-		
+
 		cout << ptrUsuario->sName << endl;
-		
+
         cursor = cursor->next;
     }
 

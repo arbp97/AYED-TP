@@ -16,7 +16,13 @@
 
 /* Definicion de primitivas */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
+//estructura provisoria para cargar el reporte de vinos
+typedef struct r1{
+int id;
+string nombre;
+int cant=0;
+string sCellar;
+};
 // trim from start (in place)
 void leftTrim(std::string &s);
 
@@ -49,6 +55,11 @@ void mostrarMatriz(int **);
 Vino* findWineById(List wines, int id);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+//User* findUserById(List users, int id);
+void ordenarArray(r1 miArray[]);
 
 
+void rankingYear();
+
+void rankingCellar();
 #endif // _!_UTIL_HPP__

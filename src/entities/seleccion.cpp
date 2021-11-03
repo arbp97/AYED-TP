@@ -1,4 +1,5 @@
-#include "seleccion.hpp"
+#include "../headers/seleccion.hpp"
+
 
 using namespace std;
 

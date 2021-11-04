@@ -116,28 +116,31 @@ void ordenarArray(WineAndQuantityStruct miArray[], int tamanio){
 void orderListStrains(List listStrains)
 {
     Node* cursor = new Node;
-    cursor = listStrains.head;
 	StrainAndQuantityStruct* ptrStrain = new StrainAndQuantityStruct;
     Node* temp = new Node;
 
-	while (cursor != NULL) //recorre hasta el ultimo elemento
+	for (size_t i = 0; i < length(listStrains); i++)
     {
-        temp = cursor;
-
-        while(temp->next != NULL) //recorre hasta el segundo ultimo elemento
+        cursor = listStrains.head;
+        while (cursor != NULL) //recorre hasta el ultimo elemento
         {
-            if(((StrainAndQuantityStruct*) temp->ptrData)->cant >
-             ((StrainAndQuantityStruct*) temp->next->ptrData)->cant)
+            temp = cursor;
+
+            while(temp->next != NULL) //recorre hasta el segundo ultimo elemento
             {
-                ptrStrain = (StrainAndQuantityStruct*) temp->ptrData;
-                temp->ptrData = temp->next->ptrData;
-                temp->next->ptrData = ptrStrain;
+                if(((StrainAndQuantityStruct*) temp->ptrData)->cant <
+                ((StrainAndQuantityStruct*) temp->next->ptrData)->cant)
+                {
+                    ptrStrain = (StrainAndQuantityStruct*) temp->ptrData;
+                    temp->ptrData = temp->next->ptrData;
+                    temp->next->ptrData = ptrStrain;
+                }
+
+                temp = temp->next;
             }
 
-            temp = temp->next;
+            cursor = cursor->next;
         }
-
-        cursor = cursor->next;
     }
 
 }
@@ -216,9 +219,9 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
         cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
     }
 
-    cout<<"Pulse una tecla para continuar" << endl;
-
-    getchar();
+    cout<<"Pulse una tecla para continuar > ";
+    cin.ignore();
+    cin.get();
 }
 
 void rankingAnualDeBodegas(List listVinos, List listSeleccion){
@@ -316,9 +319,10 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion){
         cout<<arregloStructWinesFinal[i].id <<" "<<arregloStructWinesFinal[i].sCellar <<" " <<arregloStructWinesFinal[i].cant<<endl;
             }
     }
-    cout<<"Pulse una tecla para continuar";
-    getchar();
 
+    cout<<"Pulse una tecla para continuar > ";
+    cin.ignore();
+    cin.get();
 }
 
 
@@ -336,7 +340,7 @@ bool isStrainInWinesList(List listVinosAux, string strain)
     {
        ptrStrain = (StrainAndQuantityStruct*) cursor->ptrData;
 
-       if(ptrStrain->sStrain == strain)
+       if(ptrStrain->sStrain == strain) //si encuentra la uva
        {
            answer = true;
        }
@@ -382,7 +386,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
     cursor = listVinos.head;
     Vino* ptrVino = new Vino;
     string strainAux = "startFlag";
-    int year = maxYear(listSeleccion);
+    int year = maxYear(listSeleccion); //ultimo año
 
     while (cursor != NULL)
     {
@@ -432,7 +436,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
 
         for (size_t i = 0; i < WINE_QTY; i++) //recorre todos los vinos de la seleccion
         {
-            if(ptrSeleccion->year == year)
+            if(ptrSeleccion->year == year) //debe ser una seleccion del ultimo año
             {
                 if (ptrUsuario->iAge < 30)
                 {
@@ -442,7 +446,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
                 {
                     findWineStructByStrain(listEntre30y50,ptrSeleccion->wines[i].sStrain)->cant++;
                 }
-                else
+                else // + 50
                 {
                     findWineStructByStrain(listMasDe50,ptrSeleccion->wines[i].sStrain)->cant++;
                 }
@@ -453,7 +457,9 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
         cursor = cursor->next;
     }
 
-    std::cout << "MENOS DE 30" << std::endl;
+    std::cout << "\nRANKING DE VARIETALES POR RANGO ETARIO" << std::endl;
+
+    std::cout << "\nMENOS DE 30 AÑOS\n" << std::endl;
     orderListStrains(listMenosDe30);
     cursorStrains = listMenosDe30.head;
 
@@ -464,7 +470,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
         cursorStrains = cursorStrains->next;
     }
 
-    std::cout << "ENTRE 30 Y 50" << std::endl;
+    std::cout << "\nENTRE 30 Y 50 AÑOS\n" << std::endl;
     orderListStrains(listEntre30y50);
     cursorStrains = listEntre30y50.head;
 
@@ -475,7 +481,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
         cursorStrains = cursorStrains->next;
     }
 
-    std::cout << "MAS DE 50" << std::endl;
+    std::cout << "\nMAS DE 50 AÑOS\n" << std::endl;
     orderListStrains(listMasDe50);
     cursorStrains = listMasDe50.head;
 
@@ -486,6 +492,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
         cursorStrains = cursorStrains->next;
     }
 
-    cout<<"Pulse una tecla para continuar" << endl;
-    getchar();
+    cout<<"Pulse una tecla para continuar > ";
+    cin.ignore();
+    cin.get();
 }

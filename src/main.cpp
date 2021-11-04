@@ -14,6 +14,9 @@ using namespace std;
 
 void menu(List listUsuarios,List listVinos,List listSeleccion);
 
+//limpia la pantalla en la consola
+void clearScreen();
+
 int main()
 {
 
@@ -50,13 +53,20 @@ int main()
     return 0;
 }
 
+void clearScreen()
+{
+    cout << "\033[2J\033[1;1H";
+}
+
 void menu(List listUsuarios,List listVinos,List listSeleccion){
 
     char opc; // modifique por un char para que no tire error en caso de seleccionar una letra
     int year=0;
 	while(1){
 
-		cout<<"*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
+		clearScreen();
+
+		cout<<"\n*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
 		cout<<"1-Ranking general de vinos seleccionados en el ultimo a�o."<<endl;
 		cout<<"2-Ranking por bodegas elegidas en el ultimo a�o."<<endl;
 		cout<<"3-Ranking de varietales elegidos por rango etario."<<endl;

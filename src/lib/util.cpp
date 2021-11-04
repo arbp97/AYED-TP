@@ -1,5 +1,6 @@
 #include "../headers/util.hpp"
 #include "../headers/files.hpp"
+#include <iomanip>
 
 /* Implementacion de primitivas*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -212,12 +213,20 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
     ordenarArray(arregloStructWines, cant);
     // imprimo para validar que esté cargado y ordenado
 
-    cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
+    cout << "| "<<left<<setw(25)<<"Vino"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
 
     for (int i=0;i<cant;i++){
-            if(arregloStructWines[i].id>0)
-        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
+        if(arregloStructWines[i].id>0)
+            cout << "| "
+            <<setw( 25 )<<arregloStructWines[i].nombre
+            << " | "
+            <<setw(10) <<arregloStructWines[i].cant
+            << " |"
+            <<endl;
     }
+    cout<<setw(42)<<setfill('-')<<'-'<<setfill(' ')<<'\n' ;
 
     cout<<"Pulse una tecla para continuar > ";
     cin.ignore();

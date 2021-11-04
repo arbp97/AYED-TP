@@ -213,6 +213,7 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
     ordenarArray(arregloStructWines, cant);
     // imprimo para validar que esté cargado y ordenado
 
+    cout<<"Ranking de Vinos del "<<max<<endl;
     cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
     cout << "| "<<left<<setw(25)<<"Vino"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
     cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
@@ -236,14 +237,13 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
 void rankingAnualDeBodegas(List listVinos, List listSeleccion){
 
 	Node* cursor = new Node; //Nodo lista vinos
-
+    int max=maxYear(listSeleccion);
     //tamaño de mi array
 	int cant=length(listVinos);
 
 	//arreglo para el reporte
 	WineAndQuantityStruct *arregloStructWines = new WineAndQuantityStruct[cant];
 	WineAndQuantityStruct *arregloStructWinesFinal = new WineAndQuantityStruct[cant];
-
 
     Vino* ptrVino = new Vino;
     cursor = listVinos.head;
@@ -266,7 +266,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion){
     {
         ptrSeleccion = (Seleccion*) cursor->ptrData;
 
-		if( ptrSeleccion->year==maxYear(listSeleccion)){ //valido año
+		if(ptrSeleccion->year==max){ //valido año
 
 		    for (size_t i=0;i<cant;i++){
 
@@ -282,22 +282,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion){
         cursor = cursor->next;
     }
 
-    ordenarArray(arregloStructWines, cant);
-    // imprimo para validar que esté cargado y ordenado
-
-    cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
-
-    for (size_t i=0;i<cant;i++){
-            if(arregloStructWines[i].id>0)
-        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].sCellar<< " "<<arregloStructWines[i].cant <<endl;
-    }
     ordenarArrayAlfabeticamente(arregloStructWines, cant);
-
-    cout<<"***Arreglo de vinos ordenado por bodega***"<<endl;
-    for (size_t i=0;i<cant;i++){
-            if(arregloStructWines[i].cant!=0)
-        cout << arregloStructWines[i].id <<" " <<arregloStructWines[i].sCellar<<" " <<arregloStructWines[i].cant<<endl;
-    }
 
 
     string auxCellar;
@@ -308,26 +293,30 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion){
             else{
                 arregloStructWines[i].cant=arregloStructWines[i].cant+arregloStructWines[i-1].cant;
             }
-
-           // cout << arregloStructWines[i].id <<" "<< arregloStructWines[i].sCellar <<" " <<arregloStructWines[i].cant<<endl;
-    }
+   }
 
     for(size_t i=0;i<cant;i++){
         if(arregloStructWines[i].sCellar!=arregloStructWines[i-1].sCellar){
             arregloStructWinesFinal[i]=arregloStructWines[i-1];
-            //cout << arregloStructWines[i-1].id <<" "<< arregloStructWines[i-1].sCellar <<" " <<arregloStructWines[i-1].cant<<endl;
         }
     }
     arregloStructWinesFinal[cant-1]=arregloStructWines[cant-1];
-
-        cout<<" "<<endl;
-        cout<<"***Arreglo de bodegas***"<<endl;
+    cout<<"Ranking por Bodegas del "<<max<<endl;
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
+    cout << "| "<<left<<setw(25)<<"Bodega"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
     ordenarArray(arregloStructWinesFinal, cant);
     for(size_t i=0;i<cant;i++){
             if(arregloStructWinesFinal[i].cant!=0){
-        cout<<arregloStructWinesFinal[i].id <<" "<<arregloStructWinesFinal[i].sCellar <<" " <<arregloStructWinesFinal[i].cant<<endl;
+            cout << "| "
+            <<setw( 25 )<<arregloStructWinesFinal[i].sCellar
+            << " | "
+            <<setw(10) <<arregloStructWinesFinal[i].cant
+            << " |"
+            <<endl;
             }
     }
+    cout<<setw(42)<<setfill('-')<<'-'<<setfill(' ')<<'\n' ;
 
     cout<<"Pulse una tecla para continuar > ";
     cin.ignore();
@@ -468,39 +457,67 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
 
     std::cout << "\nRANKING DE VARIETALES POR RANGO ETARIO" << std::endl;
 
-    std::cout << "\nMENOS DE 30 AÑOS\n" << std::endl;
-    orderListStrains(listMenosDe30);
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
+    cout << "| "<<left<<setw(25)<<"Menos de 30 Años"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
+     orderListStrains(listMenosDe30);
     cursorStrains = listMenosDe30.head;
 
     while (cursorStrains != NULL)
     {
         ptrStrain = (StrainAndQuantityStruct*) cursorStrains->ptrData;
-        std::cout << ptrStrain->sStrain << " - " << ptrStrain->cant << std::endl;
+        cout << "| "
+        <<setw( 25 )<<ptrStrain->sStrain
+        << " | "
+        <<setw(10) <<ptrStrain->cant
+        << " |"
+        <<endl;
+
         cursorStrains = cursorStrains->next;
     }
 
-    std::cout << "\nENTRE 30 Y 50 AÑOS\n" << std::endl;
+    cout<<setw(42)<<setfill('-')<<'-'<<setfill(' ')<<'\n';
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<endl;
+    cout << "| "<<left<<setw(25)<<"Entre 30 y 50 Años"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
+
     orderListStrains(listEntre30y50);
     cursorStrains = listEntre30y50.head;
 
     while (cursorStrains != NULL)
     {
         ptrStrain = (StrainAndQuantityStruct*) cursorStrains->ptrData;
-        std::cout << ptrStrain->sStrain << " - " << ptrStrain->cant << std::endl;
+
+        cout << "| "
+        <<setw( 25 )<<ptrStrain->sStrain
+        << " | "
+        <<setw(10) <<ptrStrain->cant
+        << " |"
+        <<endl;
+
         cursorStrains = cursorStrains->next;
     }
-
-    std::cout << "\nMAS DE 50 AÑOS\n" << std::endl;
+    cout<<setw(42)<<setfill('-')<<'-'<<setfill(' ')<<'\n';
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<endl;
+    cout << "| "<<left<<setw(25)<<"Mas de 50 Años"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
     orderListStrains(listMasDe50);
     cursorStrains = listMasDe50.head;
 
     while (cursorStrains != NULL)
     {
         ptrStrain = (StrainAndQuantityStruct*) cursorStrains->ptrData;
-        std::cout << ptrStrain->sStrain << " - " << ptrStrain->cant << std::endl;
+
+        cout << "| "
+        <<setw( 25 )<<ptrStrain->sStrain
+        << " | "
+        <<setw(10) <<ptrStrain->cant
+        << " |"
+        <<endl;
+
         cursorStrains = cursorStrains->next;
     }
-
+    cout<<setw(42)<<setfill('-')<<'-'<<setfill(' ')<<'\n';
     cout<<"Pulse una tecla para continuar > ";
     cin.ignore();
     cin.get();

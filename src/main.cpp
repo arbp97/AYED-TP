@@ -10,6 +10,7 @@
 #define EXIT_SUCCESS 0
 #include<string>
 
+
 using namespace std;
 
 void menu(List listUsuarios,List listVinos,List listSeleccion);
@@ -19,7 +20,6 @@ void clearScreen();
 
 int main()
 {
-
 	List listUsuarios;
 	List listVinos;
 	List listSeleccion;
@@ -61,19 +61,15 @@ void clearScreen()
 void menu(List listUsuarios,List listVinos,List listSeleccion){
 
     char opc; // modifique por un char para que no tire error en caso de seleccionar una letra
-    int year=0;
 	while(1){
 
 		clearScreen();
 
 		cout<<"\n*****Bienvenido al Sistema De Gestion de Membresia para vinos.******\n"<<endl;
-		cout<<"1-Ranking general de vinos seleccionados en el ultimo a�o."<<endl;
-		cout<<"2-Ranking por bodegas elegidas en el ultimo a�o."<<endl;
+		cout<<"1-Ranking general de vinos seleccionados en el ultimo año."<<endl;
+		cout<<"2-Ranking por bodegas elegidas en el ultimo año."<<endl;
 		cout<<"3-Ranking de varietales elegidos por rango etario."<<endl;
-		cout<<"4-Llamar readUsers"<<endl;
-		cout<<"5-Llamar readWines"<<endl;
-		cout<<"6-Llamar readSeleccion"<<endl;
-		cout<<"7-Salir."<<endl;
+		cout<<"4-Salir."<<endl;
 
 		cin>>opc;
 
@@ -87,16 +83,7 @@ void menu(List listUsuarios,List listVinos,List listSeleccion){
 			case '3':
 				rankingVarietalPorEdad(listUsuarios, listVinos, listSeleccion);
 				break;
-			case '4':
-				//readUsers();
-				break;
-			case '5':
-               // readWines();
-                break;
-			case '6':
-		    //readSeleccion();
-			    break;
-            case '7':
+            case '4':
 				exit(EXIT_SUCCESS);
             default:
                 cout<<"Ingrese una opcion correcta"<<endl; break;

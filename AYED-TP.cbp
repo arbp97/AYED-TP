@@ -33,13 +33,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="src/entities/menu.cpp" />
 		<Unit filename="src/entities/seleccion.cpp" />
 		<Unit filename="src/entities/usuario.cpp" />
 		<Unit filename="src/entities/vino.cpp" />
 		<Unit filename="src/headers/files.hpp" />
 		<Unit filename="src/headers/list.hpp" />
-		<Unit filename="src/headers/menu.hpp" />
 		<Unit filename="src/headers/seleccion.hpp" />
 		<Unit filename="src/headers/usuario.hpp" />
 		<Unit filename="src/headers/util.hpp" />

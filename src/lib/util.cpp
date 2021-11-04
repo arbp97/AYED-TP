@@ -1,6 +1,6 @@
 #include "../headers/util.hpp"
 #include "../headers/files.hpp"
-#include<conio.h>
+
 /* Implementacion de primitivas*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
@@ -31,74 +31,78 @@ void trim(std::string &s) {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 
-int contieneElemento(int matriz[][2], int elemento){
-    int val=-1;
-    int filas = sizeof (matriz)/sizeof (matriz[0]);
-  //  int columnas = (sizeof(matriz[0])/sizeof(matriz[0][0]))
-    for (int i=0;i<=filas;i++){
-        if(matriz[i][0]==elemento) {val=i;}
-    }
-
-    return val;
-
-}
-
-void agregoElemento(int matriz[][2], int elemento){
-    int filas = sizeof(matriz)/sizeof(matriz[0]);
-    //int columnas = sizeof(matriz[0])/sizeof(int);
-    if(contieneElemento(matriz,elemento)==-1){
-            matriz[filas+1][1]=1;
-    }
-    else matriz[contieneElemento(matriz,elemento)][1]++;
-
-    }
-
-
-
-
-
-void mostrarElementos(int matriz[][2]){
-    int filas = (sizeof(matriz)/sizeof(matriz[0]));
-    //int columnas = (sizeof(&matriz[0])/sizeof(int));
-    for (int i=0;i<=filas;i++){
-            for(int j=0;j<2;j++){
-
-            std::cout<<matriz[i][j]<<std::endl;
-            }
-
-
-    }
-}
-
 Vino* findWineById(List wines, int id)
 {
     bool found = false;
     Node* cursor = new Node;
-	Node* aux = new Node;
 	Vino* ptrVino = new Vino;
     cursor = wines.head;
 
-    while (cursor != NULL || found)
+    while ((cursor != NULL) && !found)
     {
         ptrVino = (Vino*) cursor->ptrData;
 
         if (ptrVino->id == id)
         {
-           found = true;
+            found = true;
         }
-
-		aux = cursor;
-        cursor = cursor->next;
+        else
+        {
+            cursor = cursor->next;
+        }
     }
 
     return ptrVino;
 }
 
-void ordenarArray(r1 miArray[]){
-	r1 temporal;
 
-	for (int i = 0;i < 14; i++){
-		for (int j = 0; j< 14-1; j++){
+Usuario* findUserById(List users, int id)
+{
+    bool found = false;
+    Node* cursor = new Node;
+	Usuario* ptrUser = new Usuario;
+    cursor = users.head;
+
+    while ((cursor != NULL) && !found)
+    {
+        ptrUser = (Usuario*) cursor->ptrData;
+
+        if (ptrUser->id == id)
+        {
+           found = true;
+        }
+        else
+        {
+            cursor = cursor->next;
+        }
+    }
+
+    return ptrUser;
+}
+
+int maxYear(List listSeleccion){
+    Node* cursor = new Node;
+	Seleccion* ptrSeleccion = new Seleccion;
+    cursor = listSeleccion.head;
+    int max=0;
+    while (cursor != NULL)
+    {
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
+
+		if( ptrSeleccion->year>max){ //valido aÃ±o
+		    max=ptrSeleccion->year;
+		}
+		cursor = cursor->next;
+    }
+return max;
+}
+
+
+void ordenarArray(WineAndQuantityStruct miArray[], int tamanio){
+	WineAndQuantityStruct temporal;
+
+	for (int i = 0;i < tamanio; i++){
+		for (int j = 0; j< tamanio-1; j++){
 			if (miArray[j].cant < miArray[j+1].cant){ // Ordena el array de mayor a menor, cambiar el "<" a ">" para ordenar de menor a mayor
 			temporal = miArray[j];
 			miArray[j] = miArray[j+1];
@@ -108,11 +112,41 @@ void ordenarArray(r1 miArray[]){
 	}
 }
 
-void ordenarArrayAlfabeticamente(r1 miArray[]){
-	r1 temporal;
+//ordena una lista de varietales auxiliar de mayor a menor (WORK IN PROGRESS)
+void orderListStrains(List listStrains)
+{
+    Node* cursor = new Node;
+    cursor = listStrains.head;
+	StrainAndQuantityStruct* ptrStrain = new StrainAndQuantityStruct;
+    Node* temp = new Node;
 
-	for (int i = 0;i < 14; i++){
-		for (int j = 0; j< 14-1; j++){
+	while (cursor != NULL) //recorre hasta el ultimo elemento
+    {
+        temp = cursor;
+
+        while(temp->next != NULL) //recorre hasta el segundo ultimo elemento
+        {
+            if(((StrainAndQuantityStruct*) temp->ptrData)->cant >
+             ((StrainAndQuantityStruct*) temp->next->ptrData)->cant)
+            {
+                ptrStrain = (StrainAndQuantityStruct*) temp->ptrData;
+                temp->ptrData = temp->next->ptrData;
+                temp->next->ptrData = ptrStrain;
+            }
+
+            temp = temp->next;
+        }
+
+        cursor = cursor->next;
+    }
+
+}
+
+void ordenarArrayAlfabeticamente(WineAndQuantityStruct miArray[], int tamanio){
+	WineAndQuantityStruct temporal;
+
+	for (int i = 0;i < tamanio; i++){
+		for (int j = 0; j< tamanio-1; j++){
 			if (miArray[j].sCellar > miArray[j+1].sCellar){ // Ordena el array de mayor a menor, cambiar el "<" a ">" para ordenar de menor a mayor
 			temporal = miArray[j];
 			miArray[j] = miArray[j+1];
@@ -122,178 +156,140 @@ void ordenarArrayAlfabeticamente(r1 miArray[]){
 	}
 }
 
-void rankingYear()
+
+void rankingAnualDeVinos(List listVinos, List listSeleccion)
 {
-	List listUsuarios;
-	List listVinos;
-	List listSeleccion;
+	Node* cursor = new Node; //Nodo lista vinos
 
-	Node* cursor1 = new Node; //Nodo lista vinos
+    int max=maxYear(listSeleccion); //aÃ±o maximo
 
-
-    readUsers(listUsuarios);
-	readWines(listVinos);
-	readSeleccion(listSeleccion);
-    //tamaño de mi array
+    //tamaÃ±o de mi array
 	int cant=length(listVinos);
-	cout << "Tamaño de la lista "<<cant<<endl;
+
 	//arreglo para el reporte
-	r1 *arregloStructWines = new r1[cant];
+	WineAndQuantityStruct *arregloStructWines = new WineAndQuantityStruct[cant];
 
 
     Vino* ptrVino = new Vino;
-    cursor1 = listVinos.head;
+    cursor = listVinos.head;
     int v=0;
-    while (cursor1 != NULL)   //leo lista de vinos y cargo arreglo de reporte
+    while (cursor != NULL)   //leo lista de vinos y cargo arreglo de reporte
     {
-        ptrVino = (Vino*) cursor1->ptrData;
-        cout << ptrVino->id <<endl;
-        //cursor1->ptrData = findWineById(listVinos, ptrVino->id);
+        ptrVino = (Vino*) cursor->ptrData;
+
         arregloStructWines[v]={ptrVino->id,ptrVino->sLabel,0};
-        //cout <<arregloStructWines[v].id << " " << arregloStructWines[v].cant <<endl;
         v++;
-        cursor1 = cursor1->next;
+        cursor = cursor->next;
 
     }
 
-    // imprimo para validar que esté cargado el arreglo
-    for (int i=0;i<cant;i++){
-        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
-    }
-    Node* cursor = new Node;
 	Seleccion* ptrSeleccion = new Seleccion;
     cursor = listSeleccion.head;
-    int i=0;
+
     while (cursor != NULL)
     {
         ptrSeleccion = (Seleccion*) cursor->ptrData;
 
-		cursor->ptrData = findWineById(listVinos, ptrSeleccion->id);
+		if( ptrSeleccion->year==max){ //valido aÃ±o
 
+		    for (size_t i=0;i<cant;i++){
 
-
-
-		if( ptrSeleccion->year==2021){ //valido año
-		    for (int i=0;i<cant;i++){
-                for(int j=0;j<6;j++){
+                for(size_t j=0;j<WINE_QTY;j++){
                         if (ptrSeleccion->wines[j].id==arregloStructWines[i].id) //valido id de seleccion sea igual al id del arreglo
                             arregloStructWines[i].cant++;
-		    }
+		        }
 
 		    }
 
-
-
-    }cursor = cursor->next;
-}
-ordenarArray(arregloStructWines);
-// imprimo para validar que esté cargado y ordenado
-
-cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
-    for (int i=0;i<cant;i++){
-            if(arregloStructWines[i].id>0)
-        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
-    }
-/* //LISTA DE USUARIOS
-
-	Usuario* ptrUsuarioTest = new Usuario;
-    cursor = listUsuarios.head;
-
-    while (cursor != NULL)
-    {
-        ptrUsuarioTest = (Usuario*) cursor->ptrData;
-
-		cout << ptrUsuarioTest->sName << endl;
+        }
 
         cursor = cursor->next;
-    }*/
-
-    cout<<"Pulse una tecla para continuar";
-    getch();
-}
-
-void rankingCellar(){
-
-	List listUsuarios;
-	List listVinos;
-	List listSeleccion;
-
-	Node* cursor1 = new Node; //Nodo lista vinos
-
-
-    readUsers(listUsuarios);
-	readWines(listVinos);
-	readSeleccion(listSeleccion);
-    //tamaño de mi array
-	int cant=length(listVinos);
-	cout << "Tamaño de la lista "<<cant<<endl;
-	//arreglo para el reporte
-	r1 *arregloStructWines = new r1[cant];
-	r1 *arregloStructWinesFinal = new r1[cant];
-
-
-    Vino* ptrVino = new Vino;
-    cursor1 = listVinos.head;
-    int v=0;
-    while (cursor1 != NULL)   //leo lista de vinos y cargo arreglo de reporte
-    {
-        ptrVino = (Vino*) cursor1->ptrData;
-        cout << ptrVino->id <<endl;
-        //cursor1->ptrData = findWineById(listVinos, ptrVino->id);
-        arregloStructWines[v]={ptrVino->id,ptrVino->sLabel,0,ptrVino->sCellar};
-        //cout <<arregloStructWines[v].id << " " << arregloStructWines[v].cant <<endl;
-        v++;
-        cursor1 = cursor1->next;
     }
 
-    // imprimo para validar que esté cargado el arreglo
-    for (int i=0;i<cant;i++){
-        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
-    }
-    Node* cursor = new Node;
-	Seleccion* ptrSeleccion = new Seleccion;
-    cursor = listSeleccion.head;
-    while (cursor != NULL)
-    {
-        ptrSeleccion = (Seleccion*) cursor->ptrData;
+    ordenarArray(arregloStructWines, cant);
+    // imprimo para validar que estÃ© cargado y ordenado
 
-		cursor->ptrData = findWineById(listVinos, ptrSeleccion->id);
+    cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
 
-
-
-
-		if( ptrSeleccion->year==2021){ //valido año
-		    for (int i=0;i<cant;i++){
-                for(int j=0;j<6;j++){
-                        if (ptrSeleccion->wines[j].id==arregloStructWines[i].id) //valido id de seleccion sea igual al id del arreglo
-                            arregloStructWines[i].cant++;
-		    }
-
-		    }
-
-
-
-    }cursor = cursor->next;
-}
-ordenarArray(arregloStructWines);
-// imprimo para validar que esté cargado y ordenado
-
-cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
     for (int i=0;i<cant;i++){
             if(arregloStructWines[i].id>0)
         cout <<arregloStructWines[i].id << " " << arregloStructWines[i].nombre<< " "<<arregloStructWines[i].cant <<endl;
     }
-    ordenarArrayAlfabeticamente(arregloStructWines);
+
+    cout<<"Pulse una tecla para continuar" << endl;
+
+    getchar();
+}
+
+void rankingAnualDeBodegas(List listVinos, List listSeleccion){
+
+	Node* cursor = new Node; //Nodo lista vinos
+
+    //tamaÃ±o de mi array
+	int cant=length(listVinos);
+
+	//arreglo para el reporte
+	WineAndQuantityStruct *arregloStructWines = new WineAndQuantityStruct[cant];
+	WineAndQuantityStruct *arregloStructWinesFinal = new WineAndQuantityStruct[cant];
+
+
+    Vino* ptrVino = new Vino;
+    cursor = listVinos.head;
+    int v=0;
+    while (cursor != NULL)   //leo lista de vinos y cargo arreglo de reporte
+    {
+        ptrVino = (Vino*) cursor->ptrData;
+
+        arregloStructWines[v]={ptrVino->id,ptrVino->sLabel,0,ptrVino->sCellar};
+
+        v++;
+        cursor = cursor->next;
+
+    }
+
+	Seleccion* ptrSeleccion = new Seleccion;
+    cursor = listSeleccion.head;
+
+    while (cursor != NULL)
+    {
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
+
+		if( ptrSeleccion->year==maxYear(listSeleccion)){ //valido aÃ±o
+
+		    for (size_t i=0;i<cant;i++){
+
+                for(size_t j=0;j<WINE_QTY;j++){
+                        if (ptrSeleccion->wines[j].id==arregloStructWines[i].id) //valido id de seleccion sea igual al id del arreglo
+                            arregloStructWines[i].cant++;
+		        }
+
+		    }
+
+        }
+
+        cursor = cursor->next;
+    }
+
+    ordenarArray(arregloStructWines, cant);
+    // imprimo para validar que estÃ© cargado y ordenado
+
+    cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
+
+    for (size_t i=0;i<cant;i++){
+            if(arregloStructWines[i].id>0)
+        cout <<arregloStructWines[i].id << " " << arregloStructWines[i].sCellar<< " "<<arregloStructWines[i].cant <<endl;
+    }
+    ordenarArrayAlfabeticamente(arregloStructWines, cant);
 
     cout<<"***Arreglo de vinos ordenado por bodega***"<<endl;
-    for (int i=0;i<cant;i++){
+    for (size_t i=0;i<cant;i++){
             if(arregloStructWines[i].cant!=0)
         cout << arregloStructWines[i].id <<" " <<arregloStructWines[i].sCellar<<" " <<arregloStructWines[i].cant<<endl;
     }
 
 
     string auxCellar;
-    for (int i=0;i<cant;i++){
+    for (size_t i=0;i<cant;i++){
             if  (arregloStructWines[i].sCellar!=auxCellar){
                 auxCellar=arregloStructWines[i].sCellar;
             }
@@ -301,10 +297,10 @@ cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
                 arregloStructWines[i].cant=arregloStructWines[i].cant+arregloStructWines[i-1].cant;
             }
 
-            cout << arregloStructWines[i].id <<" "<< arregloStructWines[i].sCellar <<" " <<arregloStructWines[i].cant<<endl;
+           // cout << arregloStructWines[i].id <<" "<< arregloStructWines[i].sCellar <<" " <<arregloStructWines[i].cant<<endl;
     }
 
-    for(int i=0;i<cant;i++){
+    for(size_t i=0;i<cant;i++){
         if(arregloStructWines[i].sCellar!=arregloStructWines[i-1].sCellar){
             arregloStructWinesFinal[i]=arregloStructWines[i-1];
             //cout << arregloStructWines[i-1].id <<" "<< arregloStructWines[i-1].sCellar <<" " <<arregloStructWines[i-1].cant<<endl;
@@ -314,47 +310,182 @@ cout << "************ ARREGLO CARGADO Y ORDENADO *****************" <<endl;
 
         cout<<" "<<endl;
         cout<<"***Arreglo de bodegas***"<<endl;
-    ordenarArray(arregloStructWinesFinal);
-    for(int i=0;i<cant;i++){
+    ordenarArray(arregloStructWinesFinal, cant);
+    for(size_t i=0;i<cant;i++){
             if(arregloStructWinesFinal[i].cant!=0){
         cout<<arregloStructWinesFinal[i].id <<" "<<arregloStructWinesFinal[i].sCellar <<" " <<arregloStructWinesFinal[i].cant<<endl;
             }
     }
     cout<<"Pulse una tecla para continuar";
-    getch();
+    getchar();
 
 }
 
-/*
-void mostrarMatriz(int **punteroM){
-    for (int i=0;i<cantiFilasMatriz(punteroM)+1;i++){
-        for(int j=0;j<2;j++){
-            std::cout<<punteroM[i][j];
+
+// R3
+
+//revisa si ya existe el varietal en una lista auxiliar de varietales
+bool isStrainInWinesList(List listVinosAux, string strain)
+{
+    bool answer = false;
+    Node* cursor = new Node;
+    cursor = listVinosAux.head;
+    StrainAndQuantityStruct* ptrStrain = new StrainAndQuantityStruct;
+
+    while (cursor != NULL && !answer)
+    {
+       ptrStrain = (StrainAndQuantityStruct*) cursor->ptrData;
+
+       if(ptrStrain->sStrain == strain)
+       {
+           answer = true;
+       }
+        cursor = cursor->next;
+    }
+
+    return answer;
+}
+
+//encuentra y devuelve en varietal en una lista auxiliar de varietales
+StrainAndQuantityStruct* findWineStructByStrain(List listVinosAux, string strain)
+{
+    bool found = false;
+    Node* cursor = new Node;
+	StrainAndQuantityStruct* ptrStrain = new StrainAndQuantityStruct;
+    cursor = listVinosAux.head;
+
+    while ((cursor != NULL) && !found)
+    {
+        ptrStrain = (StrainAndQuantityStruct*) cursor->ptrData;
+
+        if (ptrStrain->sStrain == strain)
+        {
+           found = true;
+        }
+        else
+        {
+            cursor = cursor->next;
         }
     }
 
-
+    return ptrStrain;
 }
-*/
-/*void agrandarMatriz(int &punteroM){
 
-    int **puntero2,fila, col;
-    fila=cantiFilasMatriz(punteroM)+1;
-    std::cout<<fila;
-    col=2;
-    puntero2 = new int*[fila];
-    for (int i=0;i<fila;i++){
-        puntero2[i]=new int[col];
+void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccion)
+{
+    List listMenosDe30;
+    List listEntre30y50;
+    List listMasDe50;
+
+    // se cuenta la cantidad de varietales
+    Node* cursor = new Node;
+    cursor = listVinos.head;
+    Vino* ptrVino = new Vino;
+    string strainAux = "startFlag";
+    int year = maxYear(listSeleccion);
+
+    while (cursor != NULL)
+    {
+        ptrVino = (Vino*) cursor->ptrData;
+
+        //cuando inicia el bucle
+        if(strainAux == "startFlag")
+        {
+            strainAux = ptrVino->sStrain;
+        }
+
+        //si la uva no esta en las listas entonces se agrega
+        else if(!isStrainInWinesList(listMenosDe30, ptrVino->sStrain))
+        {
+            StrainAndQuantityStruct* newStruct_1 = new StrainAndQuantityStruct;
+            StrainAndQuantityStruct* newStruct_2 = new StrainAndQuantityStruct;
+            StrainAndQuantityStruct* newStruct_3 = new StrainAndQuantityStruct;
+
+            newStruct_1->sStrain = ptrVino->sStrain;
+            newStruct_2->sStrain = ptrVino->sStrain;
+            newStruct_3->sStrain = ptrVino->sStrain;
+
+            addNode(listEntre30y50, newStruct_1);
+            addNode(listMenosDe30, newStruct_2);
+            addNode(listMasDe50, newStruct_3);
+        }
+
+        strainAux = ptrVino->sStrain;
+
+        cursor = cursor->next;
     }
-    std::cout<<sizeof(puntero2)<<std::endl;
-    std::cout<<sizeof(punteroM)<<std::endl;
-    memcpy(&puntero2,&punteroM,sizeof(punteroM));
-       delete &punteroM;
-       std::cout<<sizeof(punteroM)<<std::endl;
 
-           punteroM = **puntero2;
+    // ahora toca acomodar la cantidad de varietales en sus listas por edad de usuario
 
-           std::cout<<sizeof(punteroM)<<std::endl;
+    cursor = listSeleccion.head;
+    Seleccion* ptrSeleccion = new Seleccion;
+    Usuario* ptrUsuario = new Usuario;
+    Node* cursorStrains = new Node;
+    StrainAndQuantityStruct* ptrStrain = new StrainAndQuantityStruct;
+
+
+    while(cursor != NULL) //recorre todas las selecciones
+    {
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
+
+        ptrUsuario = findUserById(listUsuarios, ptrSeleccion->id);
+
+        for (size_t i = 0; i < WINE_QTY; i++) //recorre todos los vinos de la seleccion
+        {
+            if(ptrSeleccion->year == year)
+            {
+                if (ptrUsuario->iAge < 30)
+                {
+                    findWineStructByStrain(listMenosDe30,ptrSeleccion->wines[i].sStrain)->cant++;
+                }
+                else if((ptrUsuario->iAge > 30) && (ptrUsuario->iAge < 50))
+                {
+                    findWineStructByStrain(listEntre30y50,ptrSeleccion->wines[i].sStrain)->cant++;
+                }
+                else
+                {
+                    findWineStructByStrain(listMasDe50,ptrSeleccion->wines[i].sStrain)->cant++;
+                }
+            }
+
+        }
+
+        cursor = cursor->next;
+    }
+
+    std::cout << "MENOS DE 30" << std::endl;
+    orderListStrains(listMenosDe30);
+    cursorStrains = listMenosDe30.head;
+
+    while (cursorStrains != NULL)
+    {
+        ptrStrain = (StrainAndQuantityStruct*) cursorStrains->ptrData;
+        std::cout << ptrStrain->sStrain << " - " << ptrStrain->cant << std::endl;
+        cursorStrains = cursorStrains->next;
+    }
+
+    std::cout << "ENTRE 30 Y 50" << std::endl;
+    orderListStrains(listEntre30y50);
+    cursorStrains = listEntre30y50.head;
+
+    while (cursorStrains != NULL)
+    {
+        ptrStrain = (StrainAndQuantityStruct*) cursorStrains->ptrData;
+        std::cout << ptrStrain->sStrain << " - " << ptrStrain->cant << std::endl;
+        cursorStrains = cursorStrains->next;
+    }
+
+    std::cout << "MAS DE 50" << std::endl;
+    orderListStrains(listMasDe50);
+    cursorStrains = listMasDe50.head;
+
+    while (cursorStrains != NULL)
+    {
+        ptrStrain = (StrainAndQuantityStruct*) cursorStrains->ptrData;
+        std::cout << ptrStrain->sStrain << " - " << ptrStrain->cant << std::endl;
+        cursorStrains = cursorStrains->next;
+    }
+
+    cout<<"Pulse una tecla para continuar" << endl;
+    getchar();
 }
-
-*/

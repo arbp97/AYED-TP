@@ -16,12 +16,18 @@
 
 /* Definicion de primitivas */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-//estructura provisoria para cargar el reporte de vinos
-typedef struct r1{
-int id;
-string nombre;
-int cant=0;
-string sCellar;
+//estructura para cargar el reporte de vinos
+typedef struct WineAndQuantityStruct{
+    int id;
+    string nombre;
+    int cant=0;
+    string sCellar;
+};
+
+//estructura de uvas
+typedef struct StrainAndQuantityStruct{
+    string sStrain;
+    int cant=0;
 };
 // trim from start (in place)
 void leftTrim(std::string &s);
@@ -38,28 +44,17 @@ void trim(std::string &s);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-//contiene elemendo en array
-int contieneElemento(int matriz[][2], int elemento);
-//void agregoElemento(r1 arreglo[], int elemento);
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-void mostrarElementos(int matriz[][2]);
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-void mostrarMatriz(int **);
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
 Vino* findWineById(List wines, int id);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 //User* findUserById(List users, int id);
-void ordenarArray(r1 miArray[]);
+void ordenarArray(WineAndQuantityStruct miArray[]);
+
+void rankingAnualDeVinos(List listVinos, List listSeleccion);
+
+void rankingAnualDeBodegas(List listVinos, List listSeleccion);
+
+void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccion);
 
 
-void rankingYear();
-
-void rankingCellar();
 #endif // _!_UTIL_HPP__

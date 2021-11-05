@@ -113,7 +113,7 @@ void ordenarArray(WineAndQuantityStruct miArray[], int tamanio){
 	}
 }
 
-//ordena una lista de varietales auxiliar de mayor a menor (WORK IN PROGRESS)
+//ordena una lista de varietales auxiliar de mayor a menor 
 void orderListStrains(List listStrains)
 {
     Node* cursor = new Node;
@@ -135,6 +135,39 @@ void orderListStrains(List listStrains)
                     ptrStrain = (StrainAndQuantityStruct*) temp->ptrData;
                     temp->ptrData = temp->next->ptrData;
                     temp->next->ptrData = ptrStrain;
+                }
+
+                temp = temp->next;
+            }
+
+            cursor = cursor->next;
+        }
+    }
+
+}
+
+//ordena la lista de bodegas de mayor a menor
+void orderListCellar(List listCellar)
+{
+    Node* cursor = new Node;
+	WineAndQuantityStruct* ptrCellar = new WineAndQuantityStruct;
+    Node* temp = new Node;
+
+	for (size_t i = 0; i < length(listCellar); i++)
+    {
+        cursor = listCellar.head;
+        while (cursor != NULL) //recorre hasta el ultimo elemento
+        {
+            temp = cursor;
+
+            while(temp->next != NULL) //recorre hasta el segundo ultimo elemento
+            {
+                if(((WineAndQuantityStruct*) temp->ptrData)->cant <
+                ((WineAndQuantityStruct*) temp->next->ptrData)->cant)
+                {
+                    ptrCellar = (WineAndQuantityStruct*) temp->ptrData;
+                    temp->ptrData = temp->next->ptrData;
+                    temp->next->ptrData = ptrCellar;
                 }
 
                 temp = temp->next;
@@ -234,7 +267,143 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
     cin.get();
 }
 
-void rankingAnualDeBodegas(List listVinos, List listSeleccion){
+//revisa si ya existe el varietal en una lista auxiliar de bodegas
+bool isCellarInWinesList(List listVinosAux, string cellar)
+{
+    bool found = false;
+    Node* cursor = new Node;
+	WineAndQuantityStruct* ptrCellar = new WineAndQuantityStruct;
+    cursor = listVinosAux.head;
+
+    while ((cursor != NULL) && !found)
+    {
+        ptrCellar = (WineAndQuantityStruct*) cursor->ptrData;
+
+        if (ptrCellar->sCellar == cellar)
+        {
+           found = true;
+        }
+        else
+        {
+            cursor = cursor->next;
+        }
+    }
+
+    return found;
+}
+
+//encuentra y devuelve en varietal en una lista auxiliar de bodegas
+WineAndQuantityStruct* findWineStructByCellar(List listVinosAux, string cellar)
+{
+    bool found = false;
+    Node* cursor = new Node;
+	WineAndQuantityStruct* ptrCellar = new WineAndQuantityStruct;
+    cursor = listVinosAux.head;
+
+    while ((cursor != NULL) && !found)
+    {
+        ptrCellar = (WineAndQuantityStruct*) cursor->ptrData;
+
+        if (ptrCellar->sCellar == cellar)
+        {
+           found = true;
+        }
+        else
+        {
+            cursor = cursor->next;
+        }
+    }
+
+    return ptrCellar;
+}
+
+void rankingAnualDeBodegas(List listVinos, List listSeleccion)
+{
+    List listBodegas;
+    Node* cursor = new Node;
+    cursor = listVinos.head;
+    Vino* ptrVino = new Vino;
+    string cellarAux = "startFlag";
+    int year = maxYear(listSeleccion); //ultimo año
+
+    //se cuenta la cantidad de bodegas
+    while (cursor != NULL)
+    {
+        ptrVino = (Vino*) cursor->ptrData;
+
+        //cuando inicia el bucle
+        if(cellarAux == "startFlag")
+        {
+            cellarAux = ptrVino->sCellar;
+        }
+        //si la bodega no esta en las listas entonces se agrega
+        if(!isCellarInWinesList(listBodegas, ptrVino->sCellar))
+        {
+            WineAndQuantityStruct* newStruct = new WineAndQuantityStruct;
+
+            newStruct->sCellar = ptrVino->sCellar;
+
+            addNode(listBodegas, newStruct);
+        }
+
+        cellarAux = ptrVino->sCellar;
+
+        cursor = cursor->next;
+    }
+
+    // ahora toca acomodar la cantidad de bodegas en sus listas por edad de usuario
+
+    cursor = listSeleccion.head;
+    Seleccion* ptrSeleccion = new Seleccion;
+    Node* cursorCellar = new Node;
+    WineAndQuantityStruct* ptrCellar = new WineAndQuantityStruct;
+
+    while(cursor != NULL) //recorre todas las selecciones
+    {
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
+
+        for (size_t i = 0; i < WINE_QTY; i++) //recorre todos los vinos de la seleccion
+        {
+            if(ptrSeleccion->year == year) //debe ser una seleccion del ultimo año
+            {
+                findWineStructByCellar(listBodegas, ptrSeleccion->wines[i].sCellar)->cant++;
+            }
+
+        }
+
+        cursor = cursor->next;
+    }
+
+    orderListCellar(listBodegas);
+
+    std::cout << "\nRANKING DE BODEGAS" << std::endl;
+
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
+    cout << "| "<<left<<setw(25)<<"Bodega"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
+
+    cursorCellar = listBodegas.head;
+
+    while (cursorCellar != NULL)
+    {
+        ptrCellar = (WineAndQuantityStruct*) cursorCellar->ptrData;
+        cout << "| "
+        <<setw( 25 )<<ptrCellar->sCellar
+        << " | "
+        <<setw(10) <<ptrCellar->cant
+        << " |"
+        <<endl;
+
+        cursorCellar = cursorCellar->next;
+    }
+    cout<<setw(42)<<setfill('-')<<'-'<<setfill(' ')<<'\n';
+
+    cout<<"Pulse una tecla para continuar > ";
+    cin.ignore();
+    cin.get();
+}
+
+void rankingAnualDeBodegasold(List listVinos, List listSeleccion){
 
 	Node* cursor = new Node; //Nodo lista vinos
     int max=maxYear(listSeleccion);

@@ -15,7 +15,7 @@ using namespace std;
 
 void menu(List listUsuarios,List listVinos,List listSeleccion);
 
-//limpia la pantalla en la consola
+//limpia la pantalla en la consola (LINUX)
 void clearScreen();
 
 int main()

@@ -237,16 +237,16 @@
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/seleccion.cpp
 	"../headers/seleccion.hpp"
 
-1635992695 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/seleccion.hpp
+1636072547 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/seleccion.hpp
 	"vino.hpp"
 
-1633466919 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/vino.hpp
+1636073276 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/vino.hpp
 	<iostream>
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/usuario.cpp
 	"../headers/usuario.hpp"
 
-1636055621 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/usuario.hpp
+1636072547 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/usuario.hpp
 	<iostream>
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/vino.cpp
@@ -258,21 +258,22 @@
 	<fstream>
 	<string>
 
-1635992695 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/files.hpp
+1636072547 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/files.hpp
 	"list.hpp"
 	"usuario.hpp"
 	"vino.hpp"
 	"seleccion.hpp"
 
-1633466919 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/list.hpp
+1636072547 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/list.hpp
 
-1636055621 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/util.hpp
+1636074462 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/util.hpp
 	<algorithm>
 	<iostream>
 	<cctype>
 	<locale>
 	"list.hpp"
 	"vino.hpp"
+	"usuario.hpp"
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/list.cpp
 	"../headers/list.hpp"

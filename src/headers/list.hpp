@@ -11,7 +11,7 @@
 /* Puntero a la informacion del nodo de la lista*/
 typedef void* Data;
 
-/* Nodos que conforman la lista. 
+/* Nodos que conforman la lista.
  * Contiene el dato y un puntero al siguiente nodo */
 struct Node
 {
@@ -30,23 +30,37 @@ struct List
 
 /* Definicion de primitivas */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-/* Coloca el dato al final de la lista */
+/*
+    Coloca el dato al final de la lista
+   Pre: El nodo no debe estar agregado.
+   Post:Agrega un nodo al final de la lista.
+*/
 void addNode(List &list, Data ptrData);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-/* Elimina un nodo de la lista */
+/*
+   Elimina un nodo de la lista.
+   Pre: El nodo debe haber sido creado.
+   Post: Elimina el nodo pasado por parámetro.
+*/
 void deleteNode(List &list, Node* ptrNode);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-/* Devuelve el tamaño de la lista */
+/*  Devuelve el tamaño de la lista.
+    Pre:La lista debe existir.
+    Post:Devuelve un int con la cantidad de elementos de la lista.
+*/
 int length(List &list);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-/* Chequea si la lista esta vacia */
+/* Chequea si la lista esta vacia
+   Pre: La lista debe existir.
+   Post:Devuelve un booleano indicando si la lista está vacía o no.
+
+*/
 bool isEmpty(List &list);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

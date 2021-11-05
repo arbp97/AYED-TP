@@ -247,7 +247,7 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
     // imprimo para validar que esté cargado y ordenado
 
     cout<<"Ranking de Vinos del "<<max<<endl;
-    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n';
     cout << "| "<<left<<setw(25)<<"Vino"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
     cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
 
@@ -378,7 +378,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion)
 
     std::cout << "\nRANKING DE BODEGAS" << std::endl;
 
-    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n';
     cout << "| "<<left<<setw(25)<<"Bodega"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
     cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
 
@@ -536,7 +536,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
 
     std::cout << "\nRANKING DE VARIETALES POR RANGO ETARIO" << std::endl;
 
-    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ');
+    cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n';
     cout << "| "<<left<<setw(25)<<"Menos de 30 Años"<<" | "<<left<<setw(10)<<"Cantidad"<<" |";
     cout<<setw(42)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
      orderListStrains(listMenosDe30);

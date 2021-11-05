@@ -329,14 +329,18 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion)
         {
             cellarAux = ptrVino->sCellar;
         }
-        //si la bodega no esta en las listas entonces se agrega
-        if (!isCellarInWinesList(listBodegas, ptrVino->sCellar))
+
+        if (ptrVino->sCellar != "") //chequea si es correcto el formato de la bodega
         {
-            WineAndQuantityStruct *newStruct = new WineAndQuantityStruct;
+            //si la bodega no esta en las listas entonces se agrega
+            if (!isCellarInWinesList(listBodegas, ptrVino->sCellar))
+            {
+                WineAndQuantityStruct *newStruct = new WineAndQuantityStruct;
 
-            newStruct->sCellar = ptrVino->sCellar;
+                newStruct->sCellar = ptrVino->sCellar;
 
-            addNode(listBodegas, newStruct);
+                addNode(listBodegas, newStruct);
+            }
         }
 
         cellarAux = ptrVino->sCellar;
@@ -368,7 +372,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion)
 
     orderListCellar(listBodegas);
 
-    std::cout << "\nRANKING DE BODEGAS" << std::endl;
+    std::cout << "\nRanking de Bodegas del "<< year << std::endl;
 
     cout << setw(42) << setfill('-') << '\n'
          << setfill(' ') << '\n';
@@ -471,20 +475,23 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
             strainAux = ptrVino->sStrain;
         }
 
-        //si la uva no esta en las listas entonces se agrega
-        else if (!isStrainInWinesList(listMenosDe30, ptrVino->sStrain))
+        if(ptrVino->sStrain != "") //chequea si es correcto el formato de la uva
         {
-            StrainAndQuantityStruct *newStruct_1 = new StrainAndQuantityStruct;
-            StrainAndQuantityStruct *newStruct_2 = new StrainAndQuantityStruct;
-            StrainAndQuantityStruct *newStruct_3 = new StrainAndQuantityStruct;
+             //si la uva no esta en las listas entonces se agrega
+            if (!isStrainInWinesList(listMenosDe30, ptrVino->sStrain))
+            {
+                StrainAndQuantityStruct *newStruct_1 = new StrainAndQuantityStruct;
+                StrainAndQuantityStruct *newStruct_2 = new StrainAndQuantityStruct;
+                StrainAndQuantityStruct *newStruct_3 = new StrainAndQuantityStruct;
 
-            newStruct_1->sStrain = ptrVino->sStrain;
-            newStruct_2->sStrain = ptrVino->sStrain;
-            newStruct_3->sStrain = ptrVino->sStrain;
+                newStruct_1->sStrain = ptrVino->sStrain;
+                newStruct_2->sStrain = ptrVino->sStrain;
+                newStruct_3->sStrain = ptrVino->sStrain;
 
-            addNode(listEntre30y50, newStruct_1);
-            addNode(listMenosDe30, newStruct_2);
-            addNode(listMasDe50, newStruct_3);
+                addNode(listEntre30y50, newStruct_1);
+                addNode(listMenosDe30, newStruct_2);
+                addNode(listMasDe50, newStruct_3);
+            }
         }
 
         strainAux = ptrVino->sStrain;
@@ -528,8 +535,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
         cursor = cursor->next;
     }
 
-    std::cout << "\nRANKING DE VARIETALES POR RANGO ETARIO" << std::endl;
-
+    cout << "Ranking de Varietales por Rango Etario del " << year << endl;
     cout << setw(42) << setfill('-') << '\n'
          << setfill(' ') << '\n';
     cout << "| " << left << setw(25) << "Menos de 30 Años"
@@ -537,6 +543,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
          << " |";
     cout << setw(42) << setfill('-') << '\n'
          << setfill(' ') << '\n';
+
     orderListStrains(listMenosDe30);
     cursorStrains = listMenosDe30.head;
 

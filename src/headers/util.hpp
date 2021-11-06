@@ -23,6 +23,7 @@ typedef struct WineAndQuantityStruct{
     string nombre;
     int cant=0;
     string sCellar;
+    string sStrain;
 };
 
 //estructura de uvas

@@ -185,47 +185,50 @@ void orderListCellar(List listCellar)
 
 void rankingAnualDeVinos(List listVinos, List listSeleccion)
 {
-    Node *cursor = new Node; //Nodo lista vinos
 
-    int max = maxYear(listSeleccion); //año maximo
+
+	Node* cursor = new Node; //Nodo lista vinos
+
+    int max=maxYear(listSeleccion); //año maximo
 
     //tamaño de mi array
-    int cant = length(listVinos);
+	int cant=length(listVinos);
 
-    //arreglo para el reporte
-    WineAndQuantityStruct *arregloStructWines = new WineAndQuantityStruct[cant];
+	//arreglo para el reporte
+	WineAndQuantityStruct *arregloStructWines = new WineAndQuantityStruct[cant];
 
-    Vino *ptrVino = new Vino;
+
+    Vino* ptrVino = new Vino;
     cursor = listVinos.head;
-    int v = 0;
-    while (cursor != NULL) //leo lista de vinos y cargo arreglo de reporte
+    int v=0;
+    while (cursor != NULL)   //leo lista de vinos y cargo arreglo de reporte
     {
-        ptrVino = (Vino *)cursor->ptrData;
+        ptrVino = (Vino*) cursor->ptrData;
 
-        arregloStructWines[v] = {ptrVino->id, ptrVino->sLabel, 0};
+        arregloStructWines[v]={ptrVino->id,ptrVino->sLabel,0,ptrVino->sCellar,ptrVino->sStrain};
         v++;
         cursor = cursor->next;
+
     }
 
-    Seleccion *ptrSeleccion = new Seleccion;
+	Seleccion* ptrSeleccion = new Seleccion;
     cursor = listSeleccion.head;
 
     while (cursor != NULL)
     {
-        ptrSeleccion = (Seleccion *)cursor->ptrData;
+        ptrSeleccion = (Seleccion*) cursor->ptrData;
 
-        if (ptrSeleccion->year == max)
-        { //valido año
+		if( ptrSeleccion->year==max){ //valido año
 
-            for (size_t i = 0; i < cant; i++)
-            {
+		    for (size_t i=0;i<cant;i++){
 
-                for (size_t j = 0; j < WINE_QTY; j++)
-                {
-                    if (ptrSeleccion->wines[j].id == arregloStructWines[i].id) //valido id de seleccion sea igual al id del arreglo
-                        arregloStructWines[i].cant++;
-                }
-            }
+                for(size_t j=0;j<WINE_QTY;j++){
+                        if (ptrSeleccion->wines[j].id==arregloStructWines[i].id) //valido id de seleccion sea igual al id del arreglo
+                            arregloStructWines[i].cant++;
+		        }
+
+		    }
+
         }
 
         cursor = cursor->next;
@@ -234,28 +237,26 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
     ordenarArray(arregloStructWines, cant);
     // imprimo para validar que esté cargado y ordenado
 
-    cout << "Ranking de Vinos del " << max << endl;
-    cout << setw(42) << setfill('-') << '\n'
-         << setfill(' ') << '\n';
-    cout << "| " << left << setw(25) << "Vino"
-         << " | " << left << setw(10) << "Cantidad"
-         << " |";
-    cout << setw(42) << setfill('-') << '\n'
-         << setfill(' ') << '\n';
+    cout<<"Ranking de Vinos del "<<max<<endl;
 
-    for (int i = 0; i < cant; i++)
-    {
-        if (arregloStructWines[i].id > 0)
+    cout<<setw(55)<<setfill('-')<<'\n'<<setfill(' ')<<'\n';
+    cout << "| "<<left<<setw(15)<<"Vino"<<" | "<<setw(20)<<"Uva"<<" | " <<setw(10)<<"Cantidad"<<" |";
+    cout<<setw(55)<<setfill('-')<<'\n'<<setfill(' ')<<'\n' ;
+
+    for (int i=0;i<cant;i++){
+        if(arregloStructWines[i].cant>0)
             cout << "| "
-                 << setw(25) << arregloStructWines[i].nombre
-                 << " | "
-                 << setw(10) << arregloStructWines[i].cant
-                 << " |"
-                 << endl;
+            <<setw( 15 )<<arregloStructWines[i].nombre
+            << " | "
+            <<setw(20) <<arregloStructWines[i].sStrain
+            << " | "
+            <<setw(10) <<arregloStructWines[i].cant
+            << " |"
+            <<endl;
     }
-    cout << setw(42) << setfill('-') << '-' << setfill(' ') << '\n';
+    cout<<setw(55)<<setfill('-')<<'-'<<setfill(' ')<<'\n' ;
 
-    cout << "Pulse una tecla para continuar > ";
+    cout<<"Pulse una tecla para continuar > ";
     cin.ignore();
     cin.get();
 }

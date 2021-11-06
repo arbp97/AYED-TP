@@ -97,168 +97,43 @@
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/seleccion.cpp
 	"../headers/seleccion.hpp"
-
-1635992695 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/seleccion.hpp
-	"vino.hpp"
-
-1633466919 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/vino.hpp
-	<iostream>
-
-1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/usuario.cpp
-	"../headers/usuario.hpp"
-
-1636055621 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/usuario.hpp
-	<iostream>
-
-1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/vino.cpp
-	"../headers/vino.hpp"
-
-1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/files.cpp
-	"../headers/files.hpp"
-	"../headers/util.hpp"
-	<fstream>
-	<string>
-
-1635992695 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/files.hpp
-	"list.hpp"
-	"usuario.hpp"
-	"vino.hpp"
-	"seleccion.hpp"
-
-1633466919 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/list.hpp
-
-1636055621 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/util.hpp
-	<algorithm>
-	<iostream>
-	<cctype>
-	<locale>
-	"list.hpp"
-	"vino.hpp"
-
-1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/list.cpp
-	"../headers/list.hpp"
-
-1636055635 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/util.cpp
-	"../headers/util.hpp"
-	"../headers/files.hpp"
-
-1636055635 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/main.cpp
-	"headers/usuario.hpp"
-	"headers/vino.hpp"
-	"headers/seleccion.hpp"
-	"headers/list.hpp"
-	"headers/util.hpp"
-	"headers/files.hpp"
-	<iostream>
-	<fstream>
-	<cstdlib>
-	<string>
-
-1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/test.cpp
-	"headers/usuario.hpp"
-	"headers/vino.hpp"
-	"headers/seleccion.hpp"
-	"headers/list.hpp"
-	"headers/files.hpp"
-	"headers/util.hpp"
-	<iostream>
-	<cstdlib>
-
-1636060081 source:c:\users\cetrix\documents\github\ayed-tp\src\entities\seleccion.cpp
-	"../headers/seleccion.hpp"
-
-1636060081 c:\users\cetrix\documents\github\ayed-tp\src\headers\seleccion.hpp
-	"vino.hpp"
-
-1636060081 c:\users\cetrix\documents\github\ayed-tp\src\headers\vino.hpp
-	<iostream>
-
-1636060081 source:c:\users\cetrix\documents\github\ayed-tp\src\entities\usuario.cpp
-	"../headers/usuario.hpp"
-
-1636060081 c:\users\cetrix\documents\github\ayed-tp\src\headers\usuario.hpp
-	<iostream>
-
-1636060081 source:c:\users\cetrix\documents\github\ayed-tp\src\entities\vino.cpp
-	"../headers/vino.hpp"
-
-1636060081 source:c:\users\cetrix\documents\github\ayed-tp\src\lib\files.cpp
-	"../headers/files.hpp"
-	"../headers/util.hpp"
-	<fstream>
-	<string>
-
-1636060081 c:\users\cetrix\documents\github\ayed-tp\src\headers\files.hpp
-	"list.hpp"
-	"usuario.hpp"
-	"vino.hpp"
-	"seleccion.hpp"
-
-1636060081 c:\users\cetrix\documents\github\ayed-tp\src\headers\list.hpp
-
-1636060081 c:\users\cetrix\documents\github\ayed-tp\src\headers\util.hpp
-	<algorithm>
-	<iostream>
-	<cctype>
-	<locale>
-	"list.hpp"
-	"vino.hpp"
-
-1636060081 source:c:\users\cetrix\documents\github\ayed-tp\src\lib\list.cpp
-	"../headers/list.hpp"
-
-1636061859 source:c:\users\cetrix\documents\github\ayed-tp\src\lib\util.cpp
-	"../headers/util.hpp"
-	"../headers/files.hpp"
-	<iomanip>
-
-1636061140 source:c:\users\cetrix\documents\github\ayed-tp\src\main.cpp
-	"headers/usuario.hpp"
-	"headers/vino.hpp"
-	"headers/seleccion.hpp"
-	"headers/list.hpp"
-	"headers/util.hpp"
-	"headers/files.hpp"
-	<iostream>
-	<fstream>
-	<cstdlib>
-	<string>
-
-1636060081 source:c:\users\cetrix\documents\github\ayed-tp\src\test.cpp
-	"headers/usuario.hpp"
-	"headers/vino.hpp"
-	"headers/seleccion.hpp"
-	"headers/list.hpp"
-	"headers/files.hpp"
-	"headers/util.hpp"
-	<iostream>
-	<cstdlib>
-
-1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/seleccion.cpp
 	"../headers/seleccion.hpp"
 
 1636072547 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/seleccion.hpp
 	"vino.hpp"
+	"vino.hpp"
 
 1636073276 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/vino.hpp
+	<iostream>
 	<iostream>
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/usuario.cpp
 	"../headers/usuario.hpp"
+	"../headers/usuario.hpp"
 
 1636072547 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/usuario.hpp
+	<iostream>
 	<iostream>
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/entities/vino.cpp
 	"../headers/vino.hpp"
+	"../headers/vino.hpp"
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/files.cpp
+	"../headers/files.hpp"
+	"../headers/util.hpp"
+	<fstream>
+	<string>
 	"../headers/files.hpp"
 	"../headers/util.hpp"
 	<fstream>
 	<string>
 
 1636072547 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/files.hpp
+	"list.hpp"
+	"usuario.hpp"
+	"vino.hpp"
+	"seleccion.hpp"
 	"list.hpp"
 	"usuario.hpp"
 	"vino.hpp"
@@ -273,12 +148,36 @@
 	<locale>
 	"list.hpp"
 	"vino.hpp"
+	<algorithm>
+	<iostream>
+	<cctype>
+	<locale>
+	"list.hpp"
+	"vino.hpp"
 	"usuario.hpp"
 
 1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/list.cpp
 	"../headers/list.hpp"
+	"../headers/list.hpp"
+
+1636068870 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/util.cpp
+	"../headers/util.hpp"
+	"../headers/files.hpp"
+	"../headers/util.hpp"
+	"../headers/files.hpp"
+	<iomanip>
 
 1636074638 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/main.cpp
+	"headers/usuario.hpp"
+	"headers/vino.hpp"
+	"headers/seleccion.hpp"
+	"headers/list.hpp"
+	"headers/util.hpp"
+	"headers/files.hpp"
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<string>
 	"headers/usuario.hpp"
 	"headers/vino.hpp"
 	"headers/seleccion.hpp"
@@ -299,9 +198,83 @@
 	"headers/util.hpp"
 	<iostream>
 	<cstdlib>
+	"headers/usuario.hpp"
+	"headers/vino.hpp"
+	"headers/seleccion.hpp"
+	"headers/list.hpp"
+	"headers/files.hpp"
+	"headers/util.hpp"
+	<iostream>
+	<cstdlib>
 
-1636068870 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/lib/util.cpp
+1636159541 source:c:\users\cetrix\documents\github\ayed-tp\src\entities\seleccion.cpp
+	"../headers/seleccion.hpp"
+
+1636159545 c:\users\cetrix\documents\github\ayed-tp\src\headers\seleccion.hpp
+	"vino.hpp"
+
+1636159545 c:\users\cetrix\documents\github\ayed-tp\src\headers\vino.hpp
+	<iostream>
+
+1636159541 source:c:\users\cetrix\documents\github\ayed-tp\src\entities\usuario.cpp
+	"../headers/usuario.hpp"
+
+1636159545 c:\users\cetrix\documents\github\ayed-tp\src\headers\usuario.hpp
+	<iostream>
+
+1636159541 source:c:\users\cetrix\documents\github\ayed-tp\src\entities\vino.cpp
+	"../headers/vino.hpp"
+
+1636159541 source:c:\users\cetrix\documents\github\ayed-tp\src\lib\files.cpp
+	"../headers/files.hpp"
+	"../headers/util.hpp"
+	<fstream>
+	<string>
+
+1636159545 c:\users\cetrix\documents\github\ayed-tp\src\headers\files.hpp
+	"list.hpp"
+	"usuario.hpp"
+	"vino.hpp"
+	"seleccion.hpp"
+
+1636159545 c:\users\cetrix\documents\github\ayed-tp\src\headers\list.hpp
+
+1636159670 c:\users\cetrix\documents\github\ayed-tp\src\headers\util.hpp
+	<algorithm>
+	<iostream>
+	<cctype>
+	<locale>
+	"list.hpp"
+	"vino.hpp"
+	"usuario.hpp"
+
+1636159541 source:c:\users\cetrix\documents\github\ayed-tp\src\lib\list.cpp
+	"../headers/list.hpp"
+
+1636159814 source:c:\users\cetrix\documents\github\ayed-tp\src\lib\util.cpp
 	"../headers/util.hpp"
 	"../headers/files.hpp"
 	<iomanip>
+
+1636159545 source:c:\users\cetrix\documents\github\ayed-tp\src\main.cpp
+	"headers/usuario.hpp"
+	"headers/vino.hpp"
+	"headers/seleccion.hpp"
+	"headers/list.hpp"
+	"headers/util.hpp"
+	"headers/files.hpp"
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<string>
+
+1636159541 source:c:\users\cetrix\documents\github\ayed-tp\src\test.cpp
+	"headers/usuario.hpp"
+	"headers/vino.hpp"
+	"headers/seleccion.hpp"
+	"headers/list.hpp"
+	"headers/files.hpp"
+	"headers/util.hpp"
+	<iostream>
+	<cstdlib>
 

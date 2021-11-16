@@ -3,6 +3,9 @@
 #include <fstream>
 #include<string>
 
+/* Implementacion de primitivas*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 void loadUser(Usuario &user, string text)
 {
 	string aux;
@@ -10,11 +13,22 @@ void loadUser(Usuario &user, string text)
 	bool isNameSet = false;
 	bool isAddressSet = false;
 
+	//recorre todo el string correspondiente al usuario
 	for (unsigned int i = 0; i < text.length(); i++)
 	{
+		// estos signos significan cambio de campo o EOF
 		if ((text.at(i) == '-') or (text.at(i) == ';'))
 		{
-            trim(aux);
+            trim(aux); // se quitan los espacios en blanco
+
+			/*
+				aqui revisamos los flags para cada
+				campo a cargar.
+				si el flag no esta levantado, significa
+				que hay que setear ese campo.
+				estan en el orden que deberia tener
+				el string.
+			*/
 
 			if (!isIdSet)
 			{
@@ -43,6 +57,8 @@ void loadUser(Usuario &user, string text)
 		}
 		else
 		{
+			// si no hay signo, sigue siendo el mismo
+			// campo 
 			aux = aux + text.at(i);
 		}
 
@@ -50,27 +66,33 @@ void loadUser(Usuario &user, string text)
 
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 void readUsers(List &listUsuarios)
 {
 	string text;
 	ifstream file("data/usuarios.txt");
 
+	//lee los archivos de usuario hasta EOF
 	while(getline(file, text))
 	{
 		Usuario* newUser = new Usuario;
 
+		//carga el usuario
 		loadUser(*newUser, text);
 
+		//agrega el usuario a la lista
         addNode(listUsuarios, newUser);
 	}
 
 	file.close();
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 //Funcion carga del TDA de vinos
 void loadWine(Vino &vino, string text)
 {
-
 	string aux;
 	bool isIdSet = false;
 	bool isLabelSet= false;
@@ -79,11 +101,23 @@ void loadWine(Vino &vino, string text)
 	bool isStrainSet = false;
     bool isYearSet = false;
 
+	//recorre todo el string correspondiente al vino
 	for (unsigned int i = 0; i < text.length(); i++)
 	{
+		// chequea si cambia de campo o termina
 		if ((text.at(i) == '-') or (text.at(i) == ';'))
 		{
+			//se remueven los espacios en blanco
             trim(aux);
+
+			/*
+				aqui revisamos los flags para cada
+				campo a cargar.
+				si el flag no esta levantado, significa
+				que hay que setear ese campo.
+				estan en el orden que deberia tener
+				el string.
+			*/
 
 			if (!isIdSet)
 			{
@@ -136,26 +170,38 @@ void loadWine(Vino &vino, string text)
 
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 void readWines(List &listVinos)
 {
 	string text;
-	ifstream file("data/vinos.txt"); //prestar atencion al nombre del archivo
+	ifstream file("data/vinos.txt");
 
+	// lee archivo de vinos hasta EOF
 	while(getline(file, text))
 	{
 		Vino* newVino = new Vino;
 
+		// carga el vino
 		loadWine(*newVino, text);
 
+		// agrega el vino a la lista
         addNode(listVinos, newVino);
 	}
 
 	file.close();
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 void loadSeleccion(Seleccion &seleccion, string text)
 {
-    string aux;
+	/*
+		mismo funcionamiento que las funciones
+		load* anteriores
+	*/
+    
+	string aux;
 	bool isIdSet = false;
 	bool isMonthSet = false;
 	bool isYearSet = false;
@@ -252,8 +298,15 @@ void loadSeleccion(Seleccion &seleccion, string text)
 
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 void readSeleccion(List &listSeleccion)
 {
+	/*
+		mismo funcionamiento que las
+		funciones read* anteriores
+	*/
+
 	string text;
 	ifstream file("data/seleccion.txt");
 
@@ -272,4 +325,4 @@ void readSeleccion(List &listSeleccion)
 
 }
 
-int readCantWines();
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

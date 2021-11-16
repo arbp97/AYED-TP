@@ -2,12 +2,14 @@
 1635578219 source:c:\users\usuario\desktop\git\ayed-tp\src\entities\seleccion.cpp
 	"../headers/seleccion.hpp"
 
-1636060081 s/seleccion.hpp"
+1636159541 s/seleccion.hpp"
 
 1635578041 c:\users\usuario\desktop\git\ayed-tp\src\headers\seleccion.hpp
 	"vino.hpp"
 
-1636060081 
+1636159545 
+
+1636159541 
 
 1635559658 c:\users\usuario\desktop\git\ayed-tp\src\headers\vino.hpp
 	<iostream>
@@ -15,7 +17,7 @@
 1635578336 source:c:\users\usuario\desktop\git\ayed-tp\src\entities\usuario.cpp
 	"../headers/usuario.hpp"
 
-1636060081 s/usuario.hpp"
+1636159541 s/usuario.hpp"
 
 1635559658 c:\users\usuario\desktop\git\ayed-tp\src\headers\usuario.hpp
 	<iostream>
@@ -23,14 +25,14 @@
 1635578431 source:c:\users\usuario\desktop\git\ayed-tp\src\lib\list.cpp
 	"../headers/list.hpp"
 
-1636060081 s/list.hpp"
+1636159541 s/list.hpp"
 
 1635559658 c:\users\usuario\desktop\git\ayed-tp\src\headers\list.hpp
 
 1635578453 source:c:\users\usuario\desktop\git\ayed-tp\src\entities\vino.cpp
 	"../headers/vino.hpp"
 
-1636060081 s/vino.hpp"
+1636159541 s/vino.hpp"
 
 1635898504 source:c:\users\usuario\desktop\git\ayed-tp\src\lib\util.cpp
 	"../headers/util.hpp"
@@ -47,7 +49,7 @@
 	"vino.hpp"
 	"usuario.hpp"
 
-1635961624 pp"
+1636159670 pp"
 
 1635910146 source:c:\users\usuario\desktop\git\ayed-tp\src\lib\files.cpp
 	"../headers/files.hpp"
@@ -61,7 +63,7 @@
 	"vino.hpp"
 	"seleccion.hpp"
 
-1636060081 .hpp"
+1636159545 .hpp"
 
 1635949946 source:c:\users\usuario\desktop\git\ayed-tp\src\main.cpp
 	"headers/usuario.hpp"
@@ -277,4 +279,40 @@
 	"headers/util.hpp"
 	<iostream>
 	<cstdlib>
+
+1636055621 source:/home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/test.cpp
+	"headers/usuario.hpp"
+	"headers/vino.hpp"
+	"headers/seleccion.hpp"
+	"headers/list.hpp"
+	"headers/files.hpp"
+	"headers/util.hpp"
+	<iostream>
+	<cstdlib>
+
+1636145818 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/usuario.hpp
+	<iostream>
+
+1636145818 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/vino.hpp
+	<iostream>
+
+1636145818 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/seleccion.hpp
+	"vino.hpp"
+
+1636145818 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/list.hpp
+
+1636145818 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/files.hpp
+	"list.hpp"
+	"usuario.hpp"
+	"vino.hpp"
+	"seleccion.hpp"
+
+1636145818 /home/arbp97/Documents/Facultad/Algoritmos_y_Estructuras_de_Datos/Codigo/tda-practica2/src/headers/util.hpp
+	<algorithm>
+	<iostream>
+	<cctype>
+	<locale>
+	"list.hpp"
+	"vino.hpp"
+	"usuario.hpp"
 

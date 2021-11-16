@@ -58,6 +58,8 @@ Vino *findWineById(List wines, int id)
     return ptrVino;
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 Usuario *findUserById(List users, int id)
 {
     bool found = false;
@@ -101,6 +103,8 @@ int maxYear(List listSeleccion)
     return max;
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 void ordenarArray(WineAndQuantityStruct miArray[], int tamanio)
 {
     WineAndQuantityStruct temporal;
@@ -118,6 +122,8 @@ void ordenarArray(WineAndQuantityStruct miArray[], int tamanio)
         }
     }
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 //ordena una lista de varietales auxiliar de mayor a menor
 void orderListStrains(List listStrains)
@@ -151,6 +157,8 @@ void orderListStrains(List listStrains)
     }
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 //ordena la lista de bodegas de mayor a menor
 void orderListCellar(List listCellar)
 {
@@ -182,6 +190,8 @@ void orderListCellar(List listCellar)
         }
     }
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 void rankingAnualDeVinos(List listVinos, List listSeleccion)
 {
@@ -261,6 +271,8 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
     cin.get();
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 //revisa si ya existe el varietal en una lista auxiliar de bodegas
 bool isCellarInWinesList(List listVinosAux, string cellar)
 {
@@ -286,6 +298,8 @@ bool isCellarInWinesList(List listVinosAux, string cellar)
     return found;
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 //encuentra y devuelve en varietal en una lista auxiliar de bodegas
 WineAndQuantityStruct *findWineStructByCellar(List listVinosAux, string cellar)
 {
@@ -310,6 +324,8 @@ WineAndQuantityStruct *findWineStructByCellar(List listVinosAux, string cellar)
 
     return ptrCellar;
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 void rankingAnualDeBodegas(List listVinos, List listSeleccion)
 {
@@ -404,7 +420,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion)
     cin.get();
 }
 
-// R3
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 //revisa si ya existe el varietal en una lista auxiliar de varietales
 bool isStrainInWinesList(List listVinosAux, string strain)
@@ -427,6 +443,8 @@ bool isStrainInWinesList(List listVinosAux, string strain)
 
     return answer;
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 //encuentra y devuelve en varietal en una lista auxiliar de varietales
 StrainAndQuantityStruct *findWineStructByStrain(List listVinosAux, string strain)
@@ -452,6 +470,8 @@ StrainAndQuantityStruct *findWineStructByStrain(List listVinosAux, string strain
 
     return ptrStrain;
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccion)
 {
@@ -617,3 +637,5 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
     cin.ignore();
     cin.get();
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

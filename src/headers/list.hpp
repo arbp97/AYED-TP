@@ -48,6 +48,12 @@ void deleteNode(List &list, Node* ptrNode);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+/*
+   Elimina una lista
+*/
+void deleteList(List &list);
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*  Devuelve el tamaño de la lista.
     Pre:La lista debe existir.
     Post:Devuelve un int con la cantidad de elementos de la lista.

@@ -1,4 +1,7 @@
 #include "../headers/list.hpp"
+#include <iostream>
+
+using namespace std;
 
 /* Implementacion de primitivas*/
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -88,8 +91,16 @@ void deleteNode(List &list, Node* ptrNode)
 	/* Primero se verifica si la lista no esta vacia y el puntero es valido */
 	if((!isEmpty(list) && (ptrNode != NULL)))
 	{
+		if(ptrNode == list.head && list.head == list.tail)
+		{
+			/* Si el nodo a eliminar es el unico nodo de la lista,
+			 * entonces se igualan a NULL la cabecera y cola de la misma
+			*/
 
-		if(ptrNode == list.head)
+			list.head = NULL;
+			list.tail = NULL;
+		}
+		else if(ptrNode == list.head)
 		{
 			/* Si el nodo a eliminar es el primero de la lista, se asigna como
 			 * primero de la lista al proximo de este. Hecho esto, se limpia
@@ -98,6 +109,14 @@ void deleteNode(List &list, Node* ptrNode)
 
 			list.head = list.head->next;
 			list.head->prev = NULL;
+		}
+		else if(ptrNode == list.tail)
+		{
+			/* Si el nodo a eliminar es la cola de la lista, entonces se asigna
+			como cola al nodo anterior al actual */
+
+			list.tail = list.tail->prev;
+			list.tail->next = NULL;
 		}
 		else
 		{
@@ -108,7 +127,29 @@ void deleteNode(List &list, Node* ptrNode)
 			ptrNode->prev->next = ptrNode->next;
 		}
 
+		delete ptrNode->ptrData;
 		delete ptrNode;
+	}
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+void deleteList(List &list)
+{
+	Node* cursor = new Node; //nodo para recorrer la lista
+
+	/*nodo auxiliar para conseguir el proximo nodo
+	luego de borrar el cursor*/
+	Node* auxPtr = new Node;
+	cursor = list.head;
+
+	while (cursor != NULL)
+	{
+		auxPtr = cursor->next;
+
+		deleteNode(list, cursor);
+
+		cursor = auxPtr;
 	}
 }
 

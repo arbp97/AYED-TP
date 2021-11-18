@@ -75,9 +75,9 @@ int test()
 	cout << "probando deleteNode (enter)" << endl;
 	getchar();
 
-	cursor = list.head;
+	deleteList(list);
 
-	deleteNode(list, aux);
+	cursor = list.head;
 
 	while (cursor != NULL)
     {

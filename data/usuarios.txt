@@ -1,6 +1,6 @@
 01054 -	Jose Martinez       -	San Martin 549, La Puerta, Catamarca            -	043 ;
-01055 -	Mario Fernandez     -	Adolfo Alsina 1257, Choele Choele, Río Negro    -	037 ;
-02056 -	Pedro Valdéz        -	Mercedes 283, El Chalten, Río Negro             -	025 ;
+01055 -	Mario Fernandez     -	Adolfo Alsina 1257, Choele Choele, Río Negro    -	057 ;
+02056 -	Pedro Valdéz        -	Mercedes 283, El Chalten, Río Negro             -	035 ;
 02057 -	Helena Carrizo      -	29 de Septiembre 245, Lanús, Buenos Aires       -	046 ;
 03058 -	René Sanchez        -	Chile 643, San Rafael, Mendoza                  -	047 ;
 03059 -	León Blanco         -	Oalzabal 2545, CABA Buenos Aires                -	028 ;

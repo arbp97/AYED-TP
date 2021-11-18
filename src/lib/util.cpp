@@ -105,9 +105,9 @@ int maxYear(List listSeleccion)
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-void ordenarArray(WineAndQuantityStruct miArray[], int tamanio)
+void ordenarArray(WineReportStruct miArray[], int tamanio)
 {
-    WineAndQuantityStruct temporal;
+    WineReportStruct temporal;
 
     for (int i = 0; i < tamanio; i++)
     {
@@ -129,7 +129,7 @@ void ordenarArray(WineAndQuantityStruct miArray[], int tamanio)
 void orderListStrains(List listStrains)
 {
     Node *cursor = new Node;
-    StrainAndQuantityStruct *ptrStrain = new StrainAndQuantityStruct;
+    WineReportStruct *ptrStrain = new WineReportStruct;
     Node *temp = new Node;
 
     for (size_t i = 0; i < length(listStrains); i++)
@@ -141,10 +141,10 @@ void orderListStrains(List listStrains)
 
             while (temp->next != NULL) //recorre hasta el segundo ultimo elemento
             {
-                if (((StrainAndQuantityStruct *)temp->ptrData)->cant <
-                    ((StrainAndQuantityStruct *)temp->next->ptrData)->cant)
+                if (((WineReportStruct *)temp->ptrData)->cant <
+                    ((WineReportStruct *)temp->next->ptrData)->cant)
                 {
-                    ptrStrain = (StrainAndQuantityStruct *)temp->ptrData;
+                    ptrStrain = (WineReportStruct *)temp->ptrData;
                     temp->ptrData = temp->next->ptrData;
                     temp->next->ptrData = ptrStrain;
                 }
@@ -163,7 +163,7 @@ void orderListStrains(List listStrains)
 void orderListCellar(List listCellar)
 {
     Node *cursor = new Node;
-    WineAndQuantityStruct *ptrCellar = new WineAndQuantityStruct;
+    WineReportStruct *ptrCellar = new WineReportStruct;
     Node *temp = new Node;
 
     for (size_t i = 0; i < length(listCellar); i++)
@@ -175,10 +175,10 @@ void orderListCellar(List listCellar)
 
             while (temp->next != NULL) //recorre hasta el segundo ultimo elemento
             {
-                if (((WineAndQuantityStruct *)temp->ptrData)->cant <
-                    ((WineAndQuantityStruct *)temp->next->ptrData)->cant)
+                if (((WineReportStruct *)temp->ptrData)->cant <
+                    ((WineReportStruct *)temp->next->ptrData)->cant)
                 {
-                    ptrCellar = (WineAndQuantityStruct *)temp->ptrData;
+                    ptrCellar = (WineReportStruct *)temp->ptrData;
                     temp->ptrData = temp->next->ptrData;
                     temp->next->ptrData = ptrCellar;
                 }
@@ -205,7 +205,7 @@ void rankingAnualDeVinos(List listVinos, List listSeleccion)
 	int cant=length(listVinos);
 
 	//arreglo para el reporte
-	WineAndQuantityStruct *arregloStructWines = new WineAndQuantityStruct[cant];
+	WineReportStruct *arregloStructWines = new WineReportStruct[cant];
 
 
     Vino* ptrVino = new Vino;
@@ -278,12 +278,12 @@ bool isCellarInWinesList(List listVinosAux, string cellar)
 {
     bool found = false;
     Node *cursor = new Node;
-    WineAndQuantityStruct *ptrCellar = new WineAndQuantityStruct;
+    WineReportStruct *ptrCellar = new WineReportStruct;
     cursor = listVinosAux.head;
 
     while ((cursor != NULL) && !found)
     {
-        ptrCellar = (WineAndQuantityStruct *)cursor->ptrData;
+        ptrCellar = (WineReportStruct *)cursor->ptrData;
 
         if (ptrCellar->sCellar == cellar)
         {
@@ -301,16 +301,16 @@ bool isCellarInWinesList(List listVinosAux, string cellar)
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 //encuentra y devuelve en varietal en una lista auxiliar de bodegas
-WineAndQuantityStruct *findWineStructByCellar(List listVinosAux, string cellar)
+WineReportStruct *findWineStructByCellar(List listVinosAux, string cellar)
 {
     bool found = false;
     Node *cursor = new Node;
-    WineAndQuantityStruct *ptrCellar = new WineAndQuantityStruct;
+    WineReportStruct *ptrCellar = new WineReportStruct;
     cursor = listVinosAux.head;
 
     while ((cursor != NULL) && !found)
     {
-        ptrCellar = (WineAndQuantityStruct *)cursor->ptrData;
+        ptrCellar = (WineReportStruct *)cursor->ptrData;
 
         if (ptrCellar->sCellar == cellar)
         {
@@ -352,7 +352,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion)
             //si la bodega no esta en las listas entonces se agrega
             if (!isCellarInWinesList(listBodegas, ptrVino->sCellar))
             {
-                WineAndQuantityStruct *newStruct = new WineAndQuantityStruct;
+                WineReportStruct *newStruct = new WineReportStruct;
 
                 newStruct->sCellar = ptrVino->sCellar;
 
@@ -370,7 +370,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion)
     cursor = listSeleccion.head;
     Seleccion *ptrSeleccion = new Seleccion;
     Node *cursorCellar = new Node;
-    WineAndQuantityStruct *ptrCellar = new WineAndQuantityStruct;
+    WineReportStruct *ptrCellar = new WineReportStruct;
 
     while (cursor != NULL) //recorre todas las selecciones
     {
@@ -403,7 +403,7 @@ void rankingAnualDeBodegas(List listVinos, List listSeleccion)
 
     while (cursorCellar != NULL)
     {
-        ptrCellar = (WineAndQuantityStruct *)cursorCellar->ptrData;
+        ptrCellar = (WineReportStruct *)cursorCellar->ptrData;
         cout << "| "
              << setw(25) << ptrCellar->sCellar
              << " | "
@@ -428,11 +428,11 @@ bool isStrainInWinesList(List listVinosAux, string strain)
     bool answer = false;
     Node *cursor = new Node;
     cursor = listVinosAux.head;
-    StrainAndQuantityStruct *ptrStrain = new StrainAndQuantityStruct;
+    WineReportStruct *ptrStrain = new WineReportStruct;
 
     while (cursor != NULL && !answer)
     {
-        ptrStrain = (StrainAndQuantityStruct *)cursor->ptrData;
+        ptrStrain = (WineReportStruct *)cursor->ptrData;
 
         if (ptrStrain->sStrain == strain) //si encuentra la uva
         {
@@ -447,16 +447,16 @@ bool isStrainInWinesList(List listVinosAux, string strain)
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 //encuentra y devuelve en varietal en una lista auxiliar de varietales
-StrainAndQuantityStruct *findWineStructByStrain(List listVinosAux, string strain)
+WineReportStruct *findWineStructByStrain(List listVinosAux, string strain)
 {
     bool found = false;
     Node *cursor = new Node;
-    StrainAndQuantityStruct *ptrStrain = new StrainAndQuantityStruct;
+    WineReportStruct *ptrStrain = new WineReportStruct;
     cursor = listVinosAux.head;
 
     while ((cursor != NULL) && !found)
     {
-        ptrStrain = (StrainAndQuantityStruct *)cursor->ptrData;
+        ptrStrain = (WineReportStruct *)cursor->ptrData;
 
         if (ptrStrain->sStrain == strain)
         {
@@ -501,9 +501,9 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
              //si la uva no esta en las listas entonces se agrega
             if (!isStrainInWinesList(listMenosDe30, ptrVino->sStrain))
             {
-                StrainAndQuantityStruct *newStruct_1 = new StrainAndQuantityStruct;
-                StrainAndQuantityStruct *newStruct_2 = new StrainAndQuantityStruct;
-                StrainAndQuantityStruct *newStruct_3 = new StrainAndQuantityStruct;
+                WineReportStruct *newStruct_1 = new WineReportStruct;
+                WineReportStruct *newStruct_2 = new WineReportStruct;
+                WineReportStruct *newStruct_3 = new WineReportStruct;
 
                 newStruct_1->sStrain = ptrVino->sStrain;
                 newStruct_2->sStrain = ptrVino->sStrain;
@@ -526,7 +526,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
     Seleccion *ptrSeleccion = new Seleccion;
     Usuario *ptrUsuario = new Usuario;
     Node *cursorStrains = new Node;
-    StrainAndQuantityStruct *ptrStrain = new StrainAndQuantityStruct;
+    WineReportStruct *ptrStrain = new WineReportStruct;
 
     while (cursor != NULL) //recorre todas las selecciones
     {
@@ -570,7 +570,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
 
     while (cursorStrains != NULL)
     {
-        ptrStrain = (StrainAndQuantityStruct *)cursorStrains->ptrData;
+        ptrStrain = (WineReportStruct *)cursorStrains->ptrData;
         cout << "| "
              << setw(25) << ptrStrain->sStrain
              << " | "
@@ -595,7 +595,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
 
     while (cursorStrains != NULL)
     {
-        ptrStrain = (StrainAndQuantityStruct *)cursorStrains->ptrData;
+        ptrStrain = (WineReportStruct *)cursorStrains->ptrData;
 
         cout << "| "
              << setw(25) << ptrStrain->sStrain
@@ -621,7 +621,7 @@ void rankingVarietalPorEdad(List listUsuarios, List listVinos, List listSeleccio
 
     while (cursorStrains != NULL)
     {
-        ptrStrain = (StrainAndQuantityStruct *)cursorStrains->ptrData;
+        ptrStrain = (WineReportStruct *)cursorStrains->ptrData;
 
         cout << "| "
              << setw(25) << ptrStrain->sStrain

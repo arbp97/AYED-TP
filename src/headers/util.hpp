@@ -17,19 +17,14 @@
 
 /* Definicion de primitivas */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-//estructura para cargar el reporte de vinos
-typedef struct WineAndQuantityStruct{
+
+//estructura utilizada para reportes
+typedef struct WineReportStruct{
     int id;
     string nombre;
     int cant=0;
     string sCellar;
     string sStrain;
-};
-
-//estructura de uvas
-typedef struct StrainAndQuantityStruct{
-    string sStrain;
-    int cant=0;
 };
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -74,18 +69,18 @@ void orderListCellar(List listCellar);
 
 bool isCellarInWinesList(List listVinosAux, string cellar);
 
-WineAndQuantityStruct* findWineStructByCellar(List listVinosAux, string cellar);
+WineReportStruct* findWineStructByCellar(List listVinosAux, string cellar);
 
 bool isStrainInWinesList(List listVinosAux, string strain);
 
-StrainAndQuantityStruct* findWineStructByStrain(List listVinosAux, string strain);
+WineReportStruct* findWineStructByStrain(List listVinosAux, string strain);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
     PRE:Debe existir el array.
     POST:Ordena el array ingresado por su cantidad.
 */
-void ordenarArray(WineAndQuantityStruct miArray[]);
+void ordenarArray(WineReportStruct miArray[]);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

@@ -14,4 +14,6 @@ AYED-TP.depend
 .vscode/*
 Makefile
 AYED-TP.mk
-
+make.sh
+help.txt
+test
